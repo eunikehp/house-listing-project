@@ -44,7 +44,7 @@
   --color-border-hover: var(--vt-c-divider-light-1);
 
   --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
+  --color-text: var(--dtt-c-text-primary);
 
   --section-gap: 160px;
 }

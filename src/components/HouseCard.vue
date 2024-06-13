@@ -67,5 +67,6 @@ export default {
 }
 
 .sample-image {
+  margin-right: 1rem;
 }
 </style>
