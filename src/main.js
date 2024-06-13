@@ -1,4 +1,6 @@
 import './assets/main.css'
+import "@fontsource/open-sans";
+import "@fontsource/montserrat";
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
