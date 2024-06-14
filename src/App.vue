@@ -1,14 +1,14 @@
 <template>
   <header>
-    <div class="wrapper">
-      <nav>
+    <nav>
+      <div class="wrapper">
         <RouterLink to="/">
           <img alt="DTT logo" class="logo" src="@/assets/icons/img_logo_dtt@3x.png" height="32" />
         </RouterLink>
         <RouterLink to="/">Houses</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </header>
   <RouterView />
 </template>
@@ -18,14 +18,19 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.wrapper {
+  margin: auto;
+  max-width: 80ch;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  font-weight: 500;
 }
-
+/* 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1rem;
 }
 
 nav {
@@ -64,12 +69,6 @@ nav a:first-of-type {
     margin: 0 2rem 0 0;
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
   nav {
     text-align: left;
     margin-left: -1rem;
@@ -78,5 +77,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+} */
 </style>

@@ -35,7 +35,7 @@
 }
 
 /* semantic color variables for this project */
-:root {
+/* :root {
   --color-background: var(--dtt-c-background-1);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -61,29 +61,97 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
   }
-}
+} */
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
-  font-weight: normal;
 }
 
 body {
-  min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
-  transition:
-    color 0.5s,
-    background-color 0.5s;
-  line-height: 1.6;
-  --font-montserrat: 'Montserrat Variable', sans-serif;
-  --font-open-sans: 'Open Sans Variable', sans-serif;
-  font-family: var(--font-montserrat);
+  font-family: 'Montserrat';
   font-size: 15px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--dtt-c-text-primary);
+  background-color: var(--dtt-c-background-1);
+  /* transition:
+    color 0.5s,
+    background-color 0.5s; */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header styles */
+h1, h2 {
+  font-family: 'Montserrat';
+  color: var(--dtt-c-text-primary);
+  margin: 20px 0 10px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: semi-bold;
+  padding-bottom: 8px;
+}
+
+p {
+  font-family: "Open Sans";
+  color: var(--dtt-c-text-secondary);
+}
+
+header {
+  width: 100%;
+  height: 5rem;
+  background-color: white;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* additional */
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color:var(--dtt-c-tertiary-2);
+}
+
+button {
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #EB5440;
+  background-color: #EB5440;
+  color: white;
+  padding: 0.05rem 1rem;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
+}
+
+nav {
+  padding: 30px;
+  margin: 0 10rem;
+}
+
+nav a {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 0 1.5rem;
+  color: var(--dtt-c-tertiary-2);
+}
+
+nav a.router-link-exact-active {
+  font-size: 22px;
+  color: var(--dtt-c-text-primary);
+  font-weight: bold;
 }

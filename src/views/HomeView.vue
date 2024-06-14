@@ -1,14 +1,16 @@
 <template>
   <div class="home">
-    <div>
+    <div class="menu">
       <h1>Houses</h1>
-      <button>Create New</button>
+      <button class="plus-button">CREATE NEW</button>
     </div>
-    <div>
-      <input type="text" placeholder="Search for a house" />
+    <div class="menu">
+      <div class="input-container">
+        <input type="text" placeholder="Search for a house" />
+      </div>
       <span>
-        <button>Price</button>
-        <button>Size</button>
+        <button class="sort-button-1">Price</button>
+        <button class="sort-button-2">Size</button>
       </span>
     </div>
 
@@ -58,11 +60,55 @@ export default {
 }
 </script>
 
-<!-- <style scoped>
-.title {
+<style scoped>
+.menu {
+  max-width: 50rem;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem auto;
+  padding-bottom: 1rem;
 }
-</style> -->
+
+.sort-button-1 {
+  border-radius: 5px 0 0 5px;
+  padding: 5px 30px;
+  font-size: 12px;
+}
+
+.sort-button-2 {
+  border-radius: 0 5px 5px 0;
+  padding: 5px 30px;
+  font-size: 12px;
+}
+
+.input-container {
+  position: relative;
+  width: 250px;
+}
+.input-container input {
+  width: 100%;
+  background: url('@/assets/icons/ic_search@3x.png') no-repeat 4px center;
+  background-size: 16px 16px; /* Adjust to the image size */
+  font-size: 12px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--dtt-c-tertiary-1);
+  padding: 8px 50px 8px 30px;
+  color: var(--dtt-c-text-primary);
+}
+
+.plus-button {
+  background: url('@/assets/icons/ic_plus_white@3x.png') no-repeat 4px center;
+  background-color: var(--dtt-c-primary);
+  background-size: 16px 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px 10px 5px 30px;
+}
+</style>
 
 
