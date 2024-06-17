@@ -1,32 +1,16 @@
 <template>
-  <header>
-    <nav>
-      <div class="wrapper">
-        <RouterLink to="/">
-          <img alt="DTT logo" class="logo" src="@/assets/icons/img_logo_dtt@3x.png" height="32" />
-        </RouterLink>
-        <RouterLink to="/">Houses</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </div>
-    </nav>
-  </header>
-  <RouterView />
+  <div>
+    <the-header />
+    <RouterView />
+  </div>
 </template>
 
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import TheHeader from './components/layouts/TheHeader.vue'
 </script>
 
 <style scoped>
-.wrapper {
-  margin: auto;
-  max-width: 80ch;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  font-weight: 500;
-}
 /* 
 .logo {
   display: block;

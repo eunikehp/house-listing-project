@@ -2,9 +2,9 @@
   <div class="home">
     <div class="menu">
       <h1>Houses</h1>
-      <button class="plus-button">CREATE NEW</button>
+      <button>CREATE NEW</button>
     </div>
-    <div class="menu">
+    <div class="menu-input">
       <div class="input-container">
         <input type="text" placeholder="Search for a house" />
       </div>
@@ -15,14 +15,15 @@
     </div>
 
     <HouseCard
-      v-for="item in houses"
-      :key="item.id"
-      :id="item.id"
-      :rooms="item.rooms"
-      :size="item.size"
-      :price="item.price"
-      :image="item.image"
-      :location="item.location"
+      v-for="house in houses"
+      :key="house.id"
+      :id="house.id"
+      :rooms="house.rooms"
+      :size="house.size"
+      :price="house.price"
+      :image="house.image"
+      :location="house.location"
+      @click="selectHouse(house)"
     />
   </div>
 </template>
@@ -30,6 +31,7 @@
 
 <script>
 import HouseCard from '../components/HouseCard.vue'
+// import HouseDetailView from '../views/HouseDetailView.vue'
 import axios from 'axios'
 
 export default {
@@ -55,6 +57,9 @@ export default {
         .catch((error) => {
           console.error('Error fetching data:', error)
         })
+    },
+    selectHouse(house) {
+      this.$router.push({ name: 'HouseDetail', params: { id: house.id } })
     }
   }
 }
@@ -65,11 +70,19 @@ export default {
   max-width: 50rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-houses: center;
   margin: 1rem auto;
   padding-bottom: 1rem;
 }
 
+.menu-input {
+  max-width: 50rem;
+  display: flex;
+  justify-content: space-between;
+  align-houses: center;
+  margin: 1rem auto;
+  padding-bottom: 1rem;
+}
 .sort-button-1 {
   border-radius: 5px 0 0 5px;
   padding: 5px 30px;
@@ -98,14 +111,14 @@ export default {
   color: var(--dtt-c-text-primary);
 }
 
-.plus-button {
+.menu button {
   background: url('@/assets/icons/ic_plus_white@3x.png') no-repeat 4px center;
   background-color: var(--dtt-c-primary);
   background-size: 16px 16px;
   border: none;
   cursor: pointer;
   display: flex;
-  align-items: center;
+  align-houses: center;
   border-radius: 5px;
   padding: 5px 10px 5px 30px;
 }

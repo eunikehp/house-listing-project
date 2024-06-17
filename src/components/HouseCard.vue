@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a class="card">
+    <a class="house-card" @click="$emit('click')">
       <div class="house-image">
-        <img alt="image" :src="image" height="100" />
+        <img alt="Houe Image" :src="image" height="100" />
       </div>
       <div class="description">
         <h3>{{ location.street }} {{ location.houseNumber }}</h3>
@@ -28,37 +28,20 @@
 
 <script>
 export default {
+  name: 'HouseCard',
   props: {
-    id: {
-      type: Number,
-      required: true
-    },
-    image: {
-      type: String,
-      required: true
-    },
-    rooms: {
-      type: Object,
-      required: true
-    },
-    location: {
-      type: Object,
-      required: true
-    },
-    price: {
-      type: Number,
-      required: true
-    },
-    size: {
-      type: Number,
-      required: true
-    }
+    id: Number,
+    image: String,
+    rooms: Object,
+    location: Object,
+    price: Number,
+    size: Number
   }
 }
 </script>
 
 <style scoped>
-.card {
+.house-card {
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 1rem;
@@ -67,6 +50,7 @@ export default {
   display: flex;
   flex-direction: row;
   background-color: var(--dtt-c-background-2);
+  cursor: pointer;
 }
 
 .house-image {
