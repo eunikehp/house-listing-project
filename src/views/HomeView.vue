@@ -2,7 +2,7 @@
   <div class="home">
     <div class="menu">
       <h1>Houses</h1>
-      <button>CREATE NEW</button>
+      <button @click="goToCreateListing">CREATE NEW</button>
     </div>
     <div class="menu-input">
       <div class="input-container">
@@ -59,6 +59,9 @@ export default {
     },
     selectHouse(house) {
       this.$router.push({ name: 'HouseDetail', params: { id: house.id } })
+    },
+    goToCreateListing() {
+      this.$router.push({ name: 'CreateListing' })
     }
   }
 }
