@@ -31,7 +31,6 @@
 
 <script>
 import HouseCard from '../components/HouseCard.vue'
-// import HouseDetailView from '../views/HouseDetailView.vue'
 import axios from 'axios'
 
 export default {
@@ -70,7 +69,7 @@ export default {
   max-width: 50rem;
   display: flex;
   justify-content: space-between;
-  align-houses: center;
+  align-items: center;
   margin: 1rem auto;
   padding-bottom: 1rem;
 }
@@ -118,7 +117,7 @@ export default {
   border: none;
   cursor: pointer;
   display: flex;
-  align-houses: center;
+  align-items: center;
   border-radius: 5px;
   padding: 5px 10px 5px 30px;
 }

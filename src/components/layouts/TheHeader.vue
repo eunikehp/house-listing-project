@@ -23,7 +23,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 100px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
 }
 
 .wrapper {
