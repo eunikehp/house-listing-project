@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="submitForm">
     <div class="form-control">
-      <label for="street-name">Street name</label>
+      <label for="street-name">Street name*</label>
       <input
         id="street-name"
         type="text"
@@ -10,9 +10,9 @@
         required
       />
     </div>
-    <div>
-      <div class="form-control">
-        <label for="house-number">House number</label>
+    <div class="form-column">
+      <div>
+        <label for="house-number">House number*</label>
         <input
           id="house-number"
           type="text"
@@ -21,7 +21,7 @@
           required
         />
       </div>
-      <div class="form-control">
+      <div>
         <label for="addition">Addition (optional)</label>
         <input
           id="addition"
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="form-control">
-      <label for="postal-code">Postal code</label>
+      <label for="postal-code">Postal code*</label>
       <input
         id="postal-code"
         type="text"
@@ -42,7 +42,7 @@
       />
     </div>
     <div class="form-control">
-      <label for="city">City</label>
+      <label for="city">City*</label>
       <input
         id="city"
         type="text"
@@ -52,20 +52,20 @@
       />
     </div>
     <div>
-      <label for="image">Image URL:</label>
+      <label for="image">Upload picture (PNG or JPG)</label>
       <input type="text" v-model="formData.image" id="image" required />
     </div>
     <div class="form-control">
-      <label for="price">Price</label>
+      <label for="price">Price*</label>
       <input id="price" type="text" placeholder="e.g. €150.000" v-model="formData.price" required />
     </div>
-    <div>
-      <div class="form-control">
-        <label for="size">Size</label>
+    <div class="form-column">
+      <div>
+        <label for="size">Size*</label>
         <input id="size" type="text" placeholder="e.g. 60m2" v-model="formData.size" required />
       </div>
-      <div class="form-control">
-        <label for="garage">Garage</label>
+      <div>
+        <label for="garage">Garage*</label>
         <select id="garage" v-model="formData.hasGarage" placeholder="Select" required>
           <option value="google">Google</option>
           <option value="wom">Word of mouth</option>
@@ -73,9 +73,9 @@
         </select>
       </div>
     </div>
-    <div>
-      <div class="form-control">
-        <label for="bedrooms">Bedrooms</label>
+    <div class="form-column">
+      <div>
+        <label for="bedrooms">Bedrooms*</label>
         <input
           id="bedrooms"
           type="number"
@@ -84,8 +84,8 @@
           required
         />
       </div>
-      <div class="form-control">
-        <label for="bathrooms">Bathrooms</label>
+      <div>
+        <label for="bathrooms">Bathrooms*</label>
         <input
           id="bathrooms"
           type="number"
@@ -96,7 +96,7 @@
       </div>
     </div>
     <div class="form-control">
-      <label for="construction-date">Construction date</label>
+      <label for="construction-date">Construction date*</label>
       <input
         id="construction-date"
         type="number"
@@ -106,16 +106,17 @@
       />
     </div>
     <div class="form-control">
-      <label for="description">Description</label>
+      <label for="description">Description*</label>
       <input
         id="description"
         type="text"
         placeholder="Enter description"
         v-model="formData.description"
+        class="description-input"
         required
       />
     </div>
-    <div>
+    <div class="post-button">
       <button type="submit">POST</button>
     </div>
   </form>
@@ -135,16 +136,21 @@ export default {
 
 <style scoped>
 form {
-  margin: 2rem auto;
-  max-width: 40rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 2rem;
-  background-color: #ffffff;
+  margin-top: 2rem;
+  margin-left: 14rem;
+  max-width: 25rem;
+  background-color: transparent;
+}
+
+.form-column {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 15px;
+  margin: 1rem 0;
 }
 
 .form-control {
-  margin: 0.5rem 0;
+  margin: 1rem 0;
 }
 
 label {
@@ -159,9 +165,29 @@ h2 {
 input,
 select {
   display: block;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
   width: 100%;
   font: inherit;
   margin-top: 0.5rem;
+  position: relative;
+  padding: 12px;
+}
+
+input::placeholder {
+  position: absolute;
+  left: 12px;
+}
+
+.description-input {
+  min-height: 100px;
+  position: relative;
+}
+
+.description-input::placeholder {
+  position: absolute;
+  top: 12px;
 }
 
 select {
@@ -169,19 +195,20 @@ select {
 }
 
 button {
-  font: inherit;
-  border: 1px solid #0076bb;
-  background-color: #0076bb;
-  color: white;
-  cursor: pointer;
-  padding: 0.75rem 2rem;
-  border-radius: 30px;
+  padding: 0.4rem 4rem;
+  border-radius: 8px;
+  box-shadow: none;
 }
 
 button:hover,
 button:active {
   border-color: #002350;
   background-color: #002350;
+}
+
+.post-button {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
 

@@ -101,10 +101,13 @@ export default {
 <style scoped>
 .back-button {
   cursor: pointer;
+  margin-left: 14rem;
 }
 
 .card {
-  margin: 2rem auto;
+  margin-top: 2rem;
+
+  margin-left: 14rem;
   max-width: 35rem;
   display: flex;
   flex-direction: column;
