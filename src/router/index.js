@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import HouseDetailView from '../views/HouseDetailView.vue';
 import NewListingView from '../views/NewListingView.vue';
+import EditListingView from '@/views/EditListingView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/create',
       name: 'CreateListing',
       component: NewListingView,
+    },
+    {
+      path: '/edit',
+      name: 'EditListing',
+      component: EditListingView,
     },
 
   ]

@@ -8,7 +8,7 @@
       <div class="description">
         <header>
           <h3>{{ house.location.street }} {{ house.location.houseNumber }}</h3>
-          <img alt="edit" src="@/assets/icons/ic_edit@3x.png" height="15px" />
+          <img alt="edit" src="@/assets/icons/ic_edit@3x.png" height="15px" @click="editListing" />
           <img alt="delete" src="@/assets/icons/ic_delete@3x.png" height="15px" />
         </header>
         <div class="info">
@@ -91,6 +91,9 @@ export default {
     },
     goBack() {
       this.$router.back()
+    },
+    editListing() {
+      this.$router.push({ name: 'EditListing' })
     }
   }
 }

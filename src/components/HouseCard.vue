@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="icon-details">
-        <img src="@/assets/icons/ic_edit@3x.png" height="12px" />
+        <img src="@/assets/icons/ic_edit@3x.png" height="12px" @click="editListing" />
       </div>
       <div class="icon-details">
         <img src="@/assets/icons/ic_delete@3x.png" height="12px" />
@@ -36,6 +36,11 @@ export default {
     location: Object,
     price: Number,
     size: Number
+  },
+  methods: {
+    editListing() {
+      this.$router.push({ name: 'EditListing' })
+    }
   }
 }
 </script>

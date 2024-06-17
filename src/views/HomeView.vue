@@ -13,7 +13,6 @@
         <button class="sort-button-2">Size</button>
       </span>
     </div>
-
     <HouseCard
       v-for="house in houses"
       :key="house.id"
