@@ -2,7 +2,9 @@
   <div class="back-button" @click="goBack">
     <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to overview
   </div>
-  <div>
+
+  <div class="container">
+    <!-- House Detail Section -->
     <div class="card" v-if="house">
       <img alt="image" :src="house.image" class="house-image" height="350" />
       <div class="description">
@@ -53,19 +55,20 @@
     <div v-if="error">
       <p>Error fetching house detail: {{ error }}</p>
     </div>
-    <div class="recommend">
-      <!-- <house-card :data="houses" /> -->
-    </div>
+
+    <!-- Recommendation Section -->
+    <recommendation />
   </div>
 </template>
 
 <script>
 import DeleteListing from '@/components/DeleteListing.vue'
+import Recommendation from '@/components/Recommendation.vue'
 import axios from 'axios'
 
 export default {
   name: 'HouseDetailView',
-  components: { DeleteListing },
+  components: { DeleteListing, Recommendation },
   props: ['id'],
   data() {
     return {
@@ -122,10 +125,15 @@ export default {
   margin-left: 14rem;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
 .card {
   margin-top: 2rem;
   margin-left: 14rem;
-  max-width: 35rem;
+  max-width: 40rem;
   display: flex;
   flex-direction: column;
   background-color: var(--dtt-c-background-2);
@@ -141,7 +149,7 @@ export default {
 .description {
   margin: 2rem 1.5rem;
   text-align: left;
-  max-width: 35rem;
+  max-width: 40rem;
 }
 
 header {
@@ -149,7 +157,7 @@ header {
   grid-template-columns: auto 15px 15px;
   grid-gap: 15px;
   margin-bottom: 0.8rem;
-  max-width: 32rem;
+  max-width: 40rem;
 }
 
 header img {
@@ -170,6 +178,6 @@ span {
 }
 
 p {
-  line-height: 1.5;
+  line-height: 1.7;
 }
 </style>

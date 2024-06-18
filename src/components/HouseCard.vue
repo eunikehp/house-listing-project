@@ -16,10 +16,10 @@
           <img alt="size " src="@/assets/icons/ic_size@3x.png" /><span>{{ size }}m2</span>
         </div>
       </div>
-      <div class="card-button">
+      <div class="card-button" v-if="showButtons">
         <img src="@/assets/icons/ic_edit@3x.png" height="12px" @click="editListing" />
       </div>
-      <div class="card-button">
+      <div class="card-button" v-if="showButtons">
         <img src="@/assets/icons/ic_delete@3x.png" height="12px" @click="showDeleteModal = true" />
       </div>
       <delete-listing :id="id" :show="showDeleteModal" :onClose="handleModalClose" />
@@ -39,7 +39,11 @@ export default {
     rooms: Object,
     location: Object,
     price: Number,
-    size: Number
+    size: Number,
+    showButtons: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -65,10 +69,10 @@ export default {
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  margin: 1rem auto;
+  margin: 0.5rem auto;
   max-width: 50rem;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 8rem auto 2rem 2rem;
   background-color: var(--dtt-c-background-2);
   cursor: pointer;
 }
@@ -88,7 +92,7 @@ export default {
 
 .description {
   text-align: left;
-  width: 37rem;
+  max-width: 37rem;
 }
 
 .description h3,
@@ -98,7 +102,7 @@ p {
 
 .icons img,
 span {
-  margin-right: 15px;
+  margin-right: 10px;
   height: 1rem;
 }
 

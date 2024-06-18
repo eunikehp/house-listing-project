@@ -22,11 +22,11 @@
       :price="house.price"
       :image="house.image"
       :location="house.location"
+      :show-buttons="true"
       @click="selectHouse(house)"
     />
   </div>
 </template>
-
 
 <script>
 import HouseCard from '../components/HouseCard.vue'
@@ -80,20 +80,24 @@ export default {
   max-width: 50rem;
   display: flex;
   justify-content: space-between;
-  align-houses: center;
+  align-items: center;
   margin: 1rem auto;
   padding-bottom: 1rem;
 }
-.sort-button-1 {
-  border-radius: 5px 0 0 5px;
+
+span button {
   padding: 5px 30px;
   font-size: 12px;
 }
 
+.sort-button-1 {
+  border-radius: 5px 0 0 5px;
+}
+
 .sort-button-2 {
   border-radius: 0 5px 5px 0;
-  padding: 5px 30px;
-  font-size: 12px;
+  background-color: var(--dtt-c-tertiary-2);
+  border-color: var(--dtt-c-tertiary-2);
 }
 
 .input-container {
