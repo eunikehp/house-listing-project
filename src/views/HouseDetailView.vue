@@ -9,7 +9,13 @@
         <header>
           <h3>{{ house.location.street }} {{ house.location.houseNumber }}</h3>
           <img alt="edit" src="@/assets/icons/ic_edit@3x.png" height="15px" @click="editListing" />
-          <img alt="delete" src="@/assets/icons/ic_delete@3x.png" height="15px" />
+          <img
+            alt="delete"
+            src="@/assets/icons/ic_delete@3x.png"
+            height="15px"
+            @click="showDeleteModal = true"
+          />
+          <delete-listing :id="house.id" :show="showDeleteModal" :onClose="handleModalClose" />
         </header>
         <div class="info">
           <img alt="location" src="@/assets/icons/ic_location@3x.png" />{{ house.location.zip }}
@@ -54,16 +60,19 @@
 </template>
 
 <script>
+import DeleteListing from '@/components/DeleteListing.vue'
 import axios from 'axios'
 
 export default {
   name: 'HouseDetailView',
+  components: { DeleteListing },
   props: ['id'],
   data() {
     return {
       house: null,
       loading: true,
-      error: null
+      error: null,
+      showDeleteModal: false
     }
   },
   created() {
@@ -71,7 +80,7 @@ export default {
   },
   methods: {
     fetchHouse() {
-      const url = `https://api.intern.d-tt.nl/api/houses/${this.id}`
+      const url = `https://api.intern.d-tt.nl/api/houses/${this.$route.params.id}`
       axios
         .get(url, {
           headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' }
@@ -94,6 +103,12 @@ export default {
     },
     editListing() {
       this.$router.push({ name: 'EditListing' })
+    },
+    handleModalClose(deleted) {
+      this.showDeleteModal = false
+      if (deleted) {
+        this.$router.push({ name: 'Home' })
+      }
     }
   }
 }
@@ -109,7 +124,6 @@ export default {
 
 .card {
   margin-top: 2rem;
-
   margin-left: 14rem;
   max-width: 35rem;
   display: flex;
@@ -127,13 +141,13 @@ export default {
 .description {
   margin: 2rem 1.5rem;
   text-align: left;
-  width: 37rem;
+  max-width: 35rem;
 }
 
 header {
-  display: flex;
-  flex-direction: row;
-  /* justify-content: space-between; */
+  display: grid;
+  grid-template-columns: auto 15px 15px;
+  grid-gap: 15px;
   margin-bottom: 0.8rem;
   max-width: 32rem;
 }
@@ -155,7 +169,7 @@ span {
   height: 15px;
 }
 
-.description p {
-  max-width: 32rem;
+p {
+  line-height: 1.5;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <a class="house-card" @click="$emit('click')">
-      <div class="house-image">
-        <img alt="Houe Image" :src="image" height="100" />
+    <a class="house-card">
+      <div class="house-image" @click="$emit('click')">
+        <img alt="Home Image" :src="image" height="100" />
       </div>
-      <div class="description">
+      <div class="description" @click="$emit('click')">
         <h3>{{ location.street }} {{ location.houseNumber }}</h3>
         <p>&#8364; {{ price }}</p>
         <p>{{ location.zip }} {{ location.city }}</p>
@@ -16,19 +16,23 @@
           <img alt="size " src="@/assets/icons/ic_size@3x.png" /><span>{{ size }}m2</span>
         </div>
       </div>
-      <div class="icon-details">
+      <div class="card-button">
         <img src="@/assets/icons/ic_edit@3x.png" height="12px" @click="editListing" />
       </div>
-      <div class="icon-details">
-        <img src="@/assets/icons/ic_delete@3x.png" height="12px" />
+      <div class="card-button">
+        <img src="@/assets/icons/ic_delete@3x.png" height="12px" @click="showDeleteModal = true" />
       </div>
+      <delete-listing :id="id" :show="showDeleteModal" :onClose="handleModalClose" />
     </a>
   </div>
 </template>
 
 <script>
+import DeleteListing from '@/components/DeleteListing.vue'
+
 export default {
   name: 'HouseCard',
+  components: { DeleteListing },
   props: {
     id: Number,
     image: String,
@@ -37,9 +41,20 @@ export default {
     price: Number,
     size: Number
   },
+  data() {
+    return {
+      showDeleteModal: false
+    }
+  },
   methods: {
     editListing() {
       this.$router.push({ name: 'EditListing' })
+    },
+    handleModalClose(deleted) {
+      this.showDeleteModal = false
+      if (deleted) {
+        this.$router.push({ name: 'Home' })
+      }
     }
   }
 }
@@ -87,7 +102,7 @@ span {
   height: 1rem;
 }
 
-.icon-details {
+.card-button {
   margin-right: 20px;
   height: 1rem;
   cursor: pointer;
