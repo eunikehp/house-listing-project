@@ -4,10 +4,10 @@
       <div class="house-image" @click="$emit('click')">
         <img alt="Home Image" :src="image" height="100" />
       </div>
-      <div class="description" @click="$emit('click')">
-        <h3>{{ location.street }} {{ location.houseNumber }}</h3>
+      <div class="listing-information" @click="$emit('click')">
+        <h2>{{ location.street }} {{ location.houseNumber }}</h2>
         <p>&#8364; {{ price }}</p>
-        <p>{{ location.zip }} {{ location.city }}</p>
+        <span>{{ location.zip }} {{ location.city }}</span>
         <div class="icons">
           <img alt="bedrooms" src="@/assets/icons/ic_bed@3x.png" /><span>{{ rooms.bedrooms }}</span>
           <img alt="bathrooms" src="@/assets/icons/ic_bath@3x.png" /><span>{{
@@ -70,7 +70,7 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   margin: 0.5rem auto;
-  max-width: 50rem;
+  max-width: 60rem;
   display: grid;
   grid-template-columns: 8rem auto 2rem 2rem;
   background-color: var(--dtt-c-background-2);
@@ -90,14 +90,14 @@ export default {
   object-fit: cover;
 }
 
-.description {
+.listing-information {
   text-align: left;
-  max-width: 37rem;
+  max-width: auto;
 }
 
-.description h3,
-p {
-  margin-bottom: 5px;
+.listing-information p,
+span {
+  font-size: 16px;
 }
 
 .icons img,

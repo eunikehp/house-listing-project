@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="page">
     <div class="menu">
       <h1>Houses</h1>
       <button @click="goToCreateListing">CREATE NEW</button>
@@ -68,7 +68,7 @@ export default {
 
 <style scoped>
 .menu {
-  max-width: 50rem;
+  max-width: 60rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,7 +77,7 @@ export default {
 }
 
 .menu-input {
-  max-width: 50rem;
+  max-width: 60rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

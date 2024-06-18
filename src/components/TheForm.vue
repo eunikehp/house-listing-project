@@ -137,7 +137,7 @@ export default {
 <style scoped>
 form {
   margin-top: 2rem;
-  margin-left: 14rem;
+  margin-left: 20rem;
   max-width: 25rem;
   background-color: transparent;
 }

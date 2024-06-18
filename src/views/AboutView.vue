@@ -26,10 +26,10 @@
 @media (min-width: 1024px) {
   .about {
     max-width: 50rem;
-    margin: 1rem auto;
-    min-height: 100vh;
+    margin: auto 20rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   .company {

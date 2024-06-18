@@ -24,7 +24,8 @@ header {
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 3px 100px rgba(0, 0, 0, 0.2);
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
+  padding-left: 10rem;
 }
 
 .wrapper {

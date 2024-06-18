@@ -1,15 +1,18 @@
 <template>
-  <div :style="image" class="page">
-    <div class="back-button" @click="goBack">
-      <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to detail page
+  <div class="page">
+    <div :style="image">
+      <div class="back-button" @click="goBack">
+        <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to detail
+        page
+      </div>
+      <h1>Edit listing</h1>
+      <the-form :formData="formData" :onSubmit="submitForm" />
     </div>
-    <h1>Edit listing</h1>
-    <the-form :formData="formData" :onSubmit="submitForm" />
   </div>
 </template>
   
   
-  <script>
+<script>
 import TheForm from '../components/TheForm.vue'
 import axios from 'axios'
 
@@ -59,18 +62,17 @@ export default {
 }
 </script>
   
-  <style scoped >
+<style scoped >
 .page {
-  /* background-image: url ('@/assets/icons/img_background@3x.png'); */
-  background-color: orange;
+  padding-bottom: 5rem;
+  background-image: url('@/assets/icons/img_background@3x.png');
+  background-size: cover;
+  background-position: center center;
+  min-height: 100vh;
 }
 
+h1,
 .back-button {
-  cursor: pointer;
-  margin-left: 14rem;
-}
-
-h1 {
-  margin-left: 14rem;
+  margin-left: 20rem;
 }
 </style>

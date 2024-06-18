@@ -8,7 +8,7 @@
       </p>
       <div class="modal-button">
         <button @click="deleteListing">YES, DELETE</button>
-        <button @click="closeModal" class="back-button">GO BACK</button>
+        <button @click="closeModal" class="go-back-button">GO BACK</button>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@ button {
   margin-bottom: 15px;
 }
 
-.back-button {
+.go-back-button {
   background-color: var(--dtt-c-secondary);
   border-color: var(--dtt-c-secondary);
 }
