@@ -1,4 +1,3 @@
-import './assets/main.css';
 import './assets/base.css';
 import "@fontsource/open-sans";
 import "@fontsource/montserrat";

@@ -9,12 +9,12 @@
         <input type="text" placeholder="Search for a house" />
       </div>
       <span>
-        <button class="sort-button-1">Price</button>
-        <button class="sort-button-2">Size</button>
+        <button class="sort-button-by-price" @click="sortHouses('price')">Price</button>
+        <button class="sort-button-by-size" @click="sortHouses('size')">Size</button>
       </span>
     </div>
     <HouseCard
-      v-for="house in houses"
+      v-for="house in filteredHouses"
       :key="house.id"
       :id="house.id"
       :rooms="house.rooms"
@@ -37,7 +37,9 @@ export default {
   components: { HouseCard },
   data() {
     return {
-      houses: []
+      houses: [],
+      sortOption: '',
+      filteredHouses: []
     }
   },
   mounted() {
@@ -51,6 +53,7 @@ export default {
         .get(apiUrl, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
         .then((response) => {
           this.houses = response.data
+          this.filteredHouses = response.data
         })
         .catch((error) => {
           console.error('Error fetching data:', error)
@@ -61,6 +64,14 @@ export default {
     },
     goToCreateListing() {
       this.$router.push({ name: 'CreateListing' })
+    },
+    sortHouses(option) {
+      this.sortOption = option
+      if (option === 'price') {
+        this.filteredHouses.sort((a, b) => a.price - b.price)
+      } else if (option === 'size') {
+        this.filteredHouses.sort((a, b) => a.size - b.size)
+      }
     }
   }
 }
@@ -88,13 +99,14 @@ export default {
 span button {
   padding: 5px 30px;
   font-size: 12px;
+  cursor: pointer;
 }
 
-.sort-button-1 {
+.sort-button-by-price {
   border-radius: 5px 0 0 5px;
 }
 
-.sort-button-2 {
+.sort-button-by-size {
   border-radius: 0 5px 5px 0;
   background-color: var(--dtt-c-tertiary-2);
   border-color: var(--dtt-c-tertiary-2);
@@ -107,7 +119,7 @@ span button {
 .input-container input {
   width: 100%;
   background: url('@/assets/icons/ic_search@3x.png') no-repeat 4px center;
-  background-size: 16px 16px; /* Adjust to the image size */
+  background-size: 16px 16px;
   font-size: 12px;
   border-radius: 5px;
   border: none;
@@ -125,7 +137,7 @@ span button {
   display: flex;
   align-items: center;
   border-radius: 5px;
-  padding: 5px 10px 5px 30px;
+  padding: 5px 20px 5px 40px;
 }
 </style>
 
