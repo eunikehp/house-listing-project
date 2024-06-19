@@ -73,7 +73,7 @@ export default {
 
 <style scoped>
 .page {
-  margin: auto 10rem;
+  margin: auto 3rem;
 }
 
 .card {

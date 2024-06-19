@@ -1,12 +1,10 @@
 <template>
   <div class="page">
-    <div :style="image">
-      <div class="back-button" @click="goBack">
-        <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to overview
-      </div>
-      <h1>Create new listing</h1>
-      <the-form :formData="formData" :onSubmit="submitForm" />
+    <div class="back-button" @click="goBack">
+      <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to overview
     </div>
+    <h1>Create new listing</h1>
+    <the-form :formData="formData" :onSubmit="submitForm" />
   </div>
 </template>
 
@@ -20,7 +18,6 @@ export default {
   components: { TheForm },
   data() {
     return {
-      image: { backgroundImage: 'url(@/assets/icons/img_background@3x.png)' },
       formData: {
         image: '',
         price: '',
@@ -72,6 +69,6 @@ export default {
 
 h1,
 .back-button {
-  margin-left: 20rem;
+  margin-left: 18rem;
 }
 </style>

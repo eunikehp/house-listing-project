@@ -1,13 +1,10 @@
 <template>
   <div class="page">
-    <div :style="image">
-      <div class="back-button" @click="goBack">
-        <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to detail
-        page
-      </div>
-      <h1>Edit listing</h1>
-      <the-form :formData="formData" :onSubmit="submitForm" />
+    <div class="back-button" @click="goBack">
+      <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to detail page
     </div>
+    <h1>Edit listing</h1>
+    <the-form :formData="formData" :onSubmit="submitForm" />
   </div>
 </template>
   
@@ -21,7 +18,6 @@ export default {
   components: { TheForm },
   data() {
     return {
-      image: { backgroundImage: 'url(@/assets/icons/img_background@3x.png)' },
       formData: {
         image: '',
         price: '',
@@ -40,19 +36,33 @@ export default {
         },
         constructionYear: null,
         hasGarage: ''
-      }
+      },
+      listingId: this.$route.params.id
     }
   },
+  mounted() {
+    this.fetchListingData()
+  },
   methods: {
-    submitForm() {
+    fetchListingData() {
       axios
-        .post('https://api.intern.d-tt.nl/api/houses', this.formData)
+        .get('https://api.intern.d-tt.nl/api/${this.listingId}')
         .then((response) => {
-          console.log('Listing created:', response.data)
+          this.formData = response.data
+        })
+        .catch((error) => {
+          console.error('Error fetching listing data:', error)
+        })
+    },
+    submitForm(updatedData) {
+      axios
+        .put('https://api.intern.d-tt.nl/api/${this.listingId}', updatedData)
+        .then((response) => {
+          console.log('Listing updated:', response.data)
           this.$router.push({ name: 'Home' })
         })
         .catch((error) => {
-          console.error('Error creating listing:', error)
+          console.error('Error updating listing data:', error)
         })
     },
     goBack() {
@@ -73,6 +83,6 @@ export default {
 
 h1,
 .back-button {
-  margin-left: 20rem;
+  margin-left: 18rem;
 }
 </style>

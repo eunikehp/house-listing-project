@@ -134,7 +134,7 @@ button {
 nav {
   font-family: 'Montserrat', sans-serif;
   padding: 30px;
-  margin: 0 10rem;
+  margin: 0 3rem;
 }
 
 nav a {
@@ -159,5 +159,5 @@ nav a.router-link-exact-active {
 }
 
 .page {
-  padding: auto 10rem;
+  padding: auto 3rem;
 }

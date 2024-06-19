@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitForm">
+  <form @submit.prevent="handleSubmit">
     <div class="form-control">
       <label for="street-name">Street name*</label>
       <input
@@ -53,7 +53,7 @@
     </div>
     <div>
       <label for="image">Upload picture (PNG or JPG)</label>
-      <input type="text" v-model="formData.image" id="image" required />
+      <input type="file" :change="formData.image" id="image" required />
     </div>
     <div class="form-control">
       <label for="price">Price*</label>
@@ -67,9 +67,8 @@
       <div>
         <label for="garage">Garage*</label>
         <select id="garage" v-model="formData.hasGarage" placeholder="Select" required>
-          <option value="google">Google</option>
-          <option value="wom">Word of mouth</option>
-          <option value="newspaper">Newspaper</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
       </div>
     </div>
@@ -125,10 +124,32 @@
 <script>
 export default {
   name: 'TheForm',
-  props: ['formData', 'onSubmit'],
+  props: {
+    formData: {
+      type: Object,
+      required: true
+    },
+    onSubmit: {
+      type: Function,
+      required: true
+    }
+  },
+  data() {
+    return {
+      localFormData: { ...this.formData }
+    }
+  },
   methods: {
-    submitForm() {
-      this.onSubmit()
+    handleSubmit() {
+      this.onSubmit(this.localFormData)
+    }
+  },
+  watch: {
+    formData: {
+      handler(newVal) {
+        this.localFormData = { ...newVal }
+      },
+      deep: true
     }
   }
 }
@@ -137,7 +158,7 @@ export default {
 <style scoped>
 form {
   margin-top: 2rem;
-  margin-left: 20rem;
+  margin-left: 18rem;
   max-width: 25rem;
   background-color: transparent;
 }
