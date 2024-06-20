@@ -4,15 +4,21 @@
       <h1>Houses</h1>
       <button @click="goToCreateListing">CREATE NEW</button>
     </div>
-    <div class="menu-input">
+    <div class="menu-search">
       <div class="input-container">
-        <input type="text" placeholder="Search for a house" />
+        <input
+          type="text"
+          placeholder="Search for a house"
+          v-model="searchHouses"
+          @input="filterHouses"
+        />
       </div>
       <span>
         <button class="sort-button-by-price" @click="sortHouses('price')">Price</button>
         <button class="sort-button-by-size" @click="sortHouses('size')">Size</button>
       </span>
     </div>
+    <div v-if="showResult" class="result">{{ totalResults }} {{ results }} found</div>
     <HouseCard
       v-for="house in filteredHouses"
       :key="house.id"
@@ -39,11 +45,19 @@ export default {
     return {
       houses: [],
       sortOption: '',
-      filteredHouses: []
+      filteredHouses: [],
+      searchHouses: '',
+      showResult: false,
+      totalResults: null
     }
   },
   mounted() {
     this.fetchDatafromAPI()
+  },
+  computed: {
+    results() {
+      return this.totalResults > 1 ? 'results' : 'result'
+    }
   },
   methods: {
     fetchDatafromAPI() {
@@ -72,13 +86,28 @@ export default {
       } else if (option === 'size') {
         this.filteredHouses.sort((a, b) => a.size - b.size)
       }
+    },
+    filterHouses() {
+      this.filteredHouses = this.houses.filter(
+        (house) =>
+          house.location.street.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
+          house.location.city.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
+          house.description.toLowerCase().includes(this.searchHouses.toLowerCase())
+      )
+      if (this.filterHouses) {
+        this.showResult = true
+        this.totalResults = this.filteredHouses.length
+      } else {
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.menu {
+.menu,
+.menu-search,
+.result {
   max-width: 60rem;
   display: flex;
   justify-content: space-between;
@@ -87,13 +116,9 @@ export default {
   padding-bottom: 1rem;
 }
 
-.menu-input {
-  max-width: 60rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem auto;
-  padding-bottom: 1rem;
+.result {
+  color: var(--dtt-c-text-primary);
+  font-weight: bold;
 }
 
 span button {
