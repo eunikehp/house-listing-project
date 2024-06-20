@@ -45,8 +45,9 @@ export default {
   },
   methods: {
     fetchListingData() {
+      const url = 'https://api.intern.d-tt.nl/api/${this.listingId}'
       axios
-        .get('https://api.intern.d-tt.nl/api/${this.listingId}')
+        .get(url, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
         .then((response) => {
           this.formData = response.data
         })
@@ -55,8 +56,9 @@ export default {
         })
     },
     submitForm(updatedData) {
+      const url = 'https://api.intern.d-tt.nl/api/${this.listingId}'
       axios
-        .put('https://api.intern.d-tt.nl/api/${this.listingId}', updatedData)
+        .put(url, updatedData, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
         .then((response) => {
           console.log('Listing updated:', response.data)
           this.$router.push({ name: 'Home' })

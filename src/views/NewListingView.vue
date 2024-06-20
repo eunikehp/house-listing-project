@@ -41,8 +41,9 @@ export default {
   },
   methods: {
     submitForm() {
+      const url = 'https://api.intern.d-tt.nl/api/houses'
       axios
-        .post('https://api.intern.d-tt.nl/api/houses', this.formData)
+        .post(url, this.formData, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
         .then((response) => {
           console.log('Listing created:', response.data)
           this.$router.push({ name: 'Home' })

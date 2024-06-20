@@ -25,8 +25,9 @@ export default {
       this.onClose(false)
     },
     deleteListing() {
+      const url = `https://api.intern.d-tt.nl/api/houses/${this.id}`
       axios
-        .delete(`https://api.intern.d-tt.nl/api/houses/${this.id}`)
+        .delete(url, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
         .then((response) => {
           console.log('Listing deleted:', response.data)
           this.onClose(true)

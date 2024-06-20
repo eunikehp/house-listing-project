@@ -12,6 +12,12 @@
           v-model="searchHouses"
           @input="filterHouses"
         />
+        <img
+          src="@/assets/icons/ic_clear@3x.png"
+          v-if="searchHouses"
+          @click="clearSearch"
+          class="clear-button"
+        />
       </div>
       <span>
         <button class="sort-button-by-price" @click="sortHouses('price')">Price</button>
@@ -20,7 +26,7 @@
     </div>
     <div v-if="showResult" class="results">{{ totalResults }} {{ results }} found</div>
     <div v-if="showEmptyHouses" class="no-results">
-      <img alt="no-result" src="@/assets/icons/img_empty_houses@3x.png" height="150px" /><span
+      <img alt="no-results" src="@/assets/icons/img_empty_houses@3x.png" height="150px" /><span
         >No results found. <br />Please try another keyword.</span
       >
     </div>
@@ -54,7 +60,8 @@ export default {
       searchHouses: '',
       showResult: false,
       totalResults: null,
-      showEmptyHouses: false
+      showEmptyHouses: false,
+      showClearButton: false
     }
   },
   mounted() {
@@ -79,12 +86,15 @@ export default {
           console.error('Error fetching data:', error)
         })
     },
+    // select a house to show the details
     selectHouse(house) {
       this.$router.push({ name: 'HouseDetail', params: { id: house.id } })
     },
+    // go to 'create a new listing 'page'
     goToCreateListing() {
       this.$router.push({ name: 'CreateListing' })
     },
+    // sort house by price and size
     sortHouses(option) {
       this.sortOption = option
       if (option === 'price') {
@@ -93,22 +103,33 @@ export default {
         this.filteredHouses.sort((a, b) => a.size - b.size)
       }
     },
+    // filter houses based on search term
     filterHouses() {
-      this.filteredHouses = this.houses.filter(
-        (house) =>
-          house.location.street.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
-          house.location.city.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
-          house.location.zip.toString().includes(this.searchHouses) ||
-          house.price.toString().includes(this.searchHouses) ||
-          house.size.toString().includes(this.searchHouses)
-      )
-      if (this.filteredHouses.length >= 1) {
-        this.showResult = true
-        this.totalResults = this.filteredHouses.length
-      } else if (this.filteredHouses.length === 0) {
+      if (this.searchHouses) {
+        this.filteredHouses = this.houses.filter(
+          (house) =>
+            house.location.street.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
+            house.location.city.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
+            house.location.zip.toString().includes(this.searchHouses) ||
+            house.price.toString().includes(this.searchHouses) ||
+            house.size.toString().includes(this.searchHouses)
+        )
+        if (this.filteredHouses.length > 0) {
+          this.showResult = true
+          this.totalResults = this.filteredHouses.length
+        } else if (this.filteredHouses.length === 0) {
+          this.showResult = false
+          this.showEmptyHouses = true
+        }
+      } else {
+        this.filteredHouses = this.houses
         this.showResult = false
-        this.showEmptyHouses = true
+        this.showEmptyHouses = false
       }
+    },
+    clearSearch() {
+      this.searchHouses = ''
+      this.filterHouses()
     }
   }
 }
@@ -171,6 +192,7 @@ span button {
   background-color: var(--dtt-c-tertiary-1);
   padding: 8px 50px 8px 30px;
   color: var(--dtt-c-text-primary);
+  position: relative;
 }
 
 .menu button {
@@ -183,6 +205,15 @@ span button {
   align-items: center;
   border-radius: 5px;
   padding: 5px 20px 5px 40px;
+}
+
+.clear-button {
+  position: absolute;
+  height: 15px;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 </style>
 
