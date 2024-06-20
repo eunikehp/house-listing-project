@@ -18,7 +18,12 @@
         <button class="sort-button-by-size" @click="sortHouses('size')">Size</button>
       </span>
     </div>
-    <div v-if="showResult" class="result">{{ totalResults }} {{ results }} found</div>
+    <div v-if="showResult" class="results">{{ totalResults }} {{ results }} found</div>
+    <div v-if="showEmptyHouses" class="no-results">
+      <img alt="no-result" src="@/assets/icons/img_empty_houses@3x.png" height="150px" /><span
+        >No results found. <br />Please try another keyword.</span
+      >
+    </div>
     <HouseCard
       v-for="house in filteredHouses"
       :key="house.id"
@@ -48,7 +53,8 @@ export default {
       filteredHouses: [],
       searchHouses: '',
       showResult: false,
-      totalResults: null
+      totalResults: null,
+      showEmptyHouses: false
     }
   },
   mounted() {
@@ -92,12 +98,16 @@ export default {
         (house) =>
           house.location.street.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
           house.location.city.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
-          house.description.toLowerCase().includes(this.searchHouses.toLowerCase())
+          house.location.zip.toString().includes(this.searchHouses) ||
+          house.price.toString().includes(this.searchHouses) ||
+          house.size.toString().includes(this.searchHouses)
       )
-      if (this.filterHouses) {
+      if (this.filteredHouses.length >= 1) {
         this.showResult = true
         this.totalResults = this.filteredHouses.length
-      } else {
+      } else if (this.filteredHouses.length === 0) {
+        this.showResult = false
+        this.showEmptyHouses = true
       }
     }
   }
@@ -107,7 +117,8 @@ export default {
 <style scoped>
 .menu,
 .menu-search,
-.result {
+.results,
+.no-results {
   max-width: 60rem;
   display: flex;
   justify-content: space-between;
@@ -116,9 +127,18 @@ export default {
   padding-bottom: 1rem;
 }
 
-.result {
+.results {
   color: var(--dtt-c-text-primary);
   font-weight: bold;
+}
+
+.no-results {
+  flex-direction: column;
+}
+
+.no-results span {
+  margin: 1rem 0;
+  text-align: center;
 }
 
 span button {
