@@ -42,9 +42,11 @@ export default {
   methods: {
     fetchHouse() {
       const url = `https://api.intern.d-tt.nl/api/houses/${this.$route.params.id}`
+      const apiKey = import.meta.env.VITE_LISTING_API_KEY
+
       axios
         .get(url, {
-          headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' }
+          headers: { 'X-Api-Key': apiKey }
         })
         .then((response) => {
           const houses = response.data

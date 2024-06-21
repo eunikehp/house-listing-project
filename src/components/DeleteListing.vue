@@ -26,8 +26,10 @@ export default {
     },
     deleteListing() {
       const url = `https://api.intern.d-tt.nl/api/houses/${this.id}`
+      const apiKey = import.meta.env.VITE_LISTING_API_KEY
+
       axios
-        .delete(url, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
+        .delete(url, { headers: { 'X-Api-Key': apiKey } })
         .then((response) => {
           console.log('Listing deleted:', response.data)
           this.onClose(true)

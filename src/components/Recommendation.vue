@@ -41,9 +41,10 @@ export default {
   methods: {
     fetchRecommendations() {
       const apiUrl = 'https://api.intern.d-tt.nl/api/houses'
+      const apiKey = import.meta.env.VITE_LISTING_API_KEY
 
       axios
-        .get(apiUrl, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
+        .get(apiUrl, { headers: { 'X-Api-Key': apiKey } })
         .then((response) => {
           this.recommendations = response.data
         })

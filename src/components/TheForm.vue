@@ -1,63 +1,63 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <div class="form-control">
-      <label for="street-name">Street name*</label>
+      <label for="street">Street name*</label>
       <input
-        id="street-name"
+        id="street"
         type="text"
-        v-model="formData.location.street"
+        v-model="formData.streetName"
         placeholder="Enter the street name"
         required
       />
     </div>
     <div class="form-column">
       <div>
-        <label for="house-number">House number*</label>
+        <label for="houseNumber">House number*</label>
         <input
-          id="house-number"
-          type="text"
-          v-model="formData.location.houseNumber"
+          id="houseNumber"
+          type="number"
+          v-model="formData.houseNumber"
           placeholder="Enter house number"
           required
         />
       </div>
       <div>
-        <label for="addition">Addition (optional)</label>
+        <label for="houseNumberAddition">Addition (optional)</label>
         <input
-          id="addition"
+          id="houseNumberAddition"
           type="text"
           placeholder="e.g. A"
-          v-model="formData.houseNumberAddition"
+          v-model="formData.numberAddition"
         />
       </div>
     </div>
     <div class="form-control">
-      <label for="postal-code">Postal code*</label>
-      <input
-        id="postal-code"
-        type="text"
-        placeholder="e.g. 1000 AA"
-        v-model="formData.location.zip"
-        required
-      />
+      <label for="zip">Postal code*</label>
+      <input id="zip" type="text" placeholder="e.g. 1000 AA" v-model="formData.zip" required />
     </div>
     <div class="form-control">
       <label for="city">City*</label>
-      <input
-        id="city"
-        type="text"
-        placeholder="e.g. Utrecht"
-        v-model="formData.location.city"
-        required
-      />
+      <input id="city" type="text" placeholder="e.g. Utrecht" v-model="formData.city" required />
     </div>
     <div>
       <label for="image">Upload picture (PNG or JPG)</label>
-      <input type="file" :change="formData.image" id="image" required />
+      <input
+        type="file"
+        @change="handleImageUpload"
+        id="image"
+        accept="image/png, image/jpeg"
+        required
+      />
     </div>
     <div class="form-control">
       <label for="price">Price*</label>
-      <input id="price" type="text" placeholder="e.g. €150.000" v-model="formData.price" required />
+      <input
+        id="price"
+        type="number"
+        placeholder="e.g. €150.000"
+        v-model="formData.price"
+        required
+      />
     </div>
     <div class="form-column">
       <div>
@@ -65,8 +65,8 @@
         <input id="size" type="text" placeholder="e.g. 60m2" v-model="formData.size" required />
       </div>
       <div>
-        <label for="garage">Garage*</label>
-        <select id="garage" v-model="formData.hasGarage" placeholder="Select" required>
+        <label for="hasGarage">Garage*</label>
+        <select id="hasGarage" v-model="formData.hasGarage" placeholder="Select" required>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -79,7 +79,7 @@
           id="bedrooms"
           type="number"
           placeholder="Enter amount"
-          v-model="formData.rooms.bedrooms"
+          v-model="formData.bedrooms"
           required
         />
       </div>
@@ -89,15 +89,15 @@
           id="bathrooms"
           type="number"
           placeholder="Enter amount"
-          v-model="formData.rooms.bathrooms"
+          v-model="formData.bathrooms"
           required
         />
       </div>
     </div>
     <div class="form-control">
-      <label for="construction-date">Construction date*</label>
+      <label for="constructionYear">Construction date*</label>
       <input
-        id="construction-date"
+        id="constructionYear"
         type="number"
         placeholder="e.g. 1990"
         v-model="formData.constructionYear"
@@ -136,12 +136,22 @@ export default {
   },
   data() {
     return {
-      localFormData: { ...this.formData }
+      localFormData: { ...this.formData },
+      image: null // to store the selected image file
     }
   },
   methods: {
+    handleImageUpload(event) {
+      const file = event.target.files[0]
+      if (file) {
+        this.image = file
+      }
+    },
     handleSubmit() {
-      this.onSubmit(this.localFormData)
+      const formDataWithoutImage = {
+        ...this.localFormData
+      }
+      this.onSubmit(formDataWithoutImage, this.image)
     }
   },
   watch: {
@@ -233,3 +243,17 @@ button:active {
 }
 </style>
 
+{
+  "price": 90,
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "size": 500,
+  "description": "oui",
+  "streetName": "streetlah",
+  "houseNumber": 20,
+  "numberAddition": "A",
+  "city": "assas",
+  "zip": "asasdd",
+  "constructionYear": 2000,
+  "hasGarage": false
+}

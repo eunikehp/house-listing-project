@@ -46,8 +46,10 @@ export default {
   methods: {
     fetchListingData() {
       const url = 'https://api.intern.d-tt.nl/api/${this.listingId}'
+      const apiKey = import.meta.env.VITE_LISTING_API_KEY
+
       axios
-        .get(url, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
+        .get(url, { headers: { 'X-Api-Key': apiKey } })
         .then((response) => {
           this.formData = response.data
         })

@@ -19,42 +19,80 @@ export default {
   data() {
     return {
       formData: {
-        image: '',
-        price: '',
-        rooms: {
-          bedrooms: null,
-          bathrooms: null
-        },
-        size: '',
+        price: null,
+        bedrooms: null,
+        bathrooms: null,
+        size: null,
         description: '',
-        location: {
-          street: '',
-          houseNumber: '',
-          houseNumberAddition: null,
-          city: '',
-          zip: ''
-        },
+        streetName: '',
+        houseNumber: null,
+        numberAddition: '',
+        city: '',
+        zip: '',
         constructionYear: null,
         hasGarage: ''
       }
     }
   },
   methods: {
-    submitForm() {
+    async submitForm(formData, image) {
+      console.log('Submitting form data:', formData)
+
+      const imageUrl = await this.uploadImage(image)
+      if (!imageUrl) {
+        console.error('Failed to upload image')
+        return
+      }
+
       const url = 'https://api.intern.d-tt.nl/api/houses'
-      axios
-        .post(url, this.formData, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
-        .then((response) => {
-          console.log('Listing created:', response.data)
-          this.$router.push({ name: 'Home' })
+      const apiKey = import.meta.env.VITE_LISTING_API_KEY
+
+      const payload = {
+        ...formData,
+        image: imageUrl, // use the uploaded image URL
+        hasGarage: formData.hasGarage === 'yes' ? true : false // Convert 'yes'/'no' to boolean
+      }
+
+      try {
+        const response = await axios.post(url, payload, {
+          headers: {
+            'X-Api-Key': apiKey,
+            'Content-Type': 'application/json'
+          }
         })
-        .catch((error) => {
-          console.error('Error creating listing:', error)
-        })
+        console.log('Listing created:', response.data)
+        this.$router.push({ name: 'Home' })
+      } catch (error) {
+        console.error('Error creating listing:', error)
+      }
     },
-    goBack() {
-      this.$router.back()
+    async uploadImage(image) {
+      if (!this.listingId) {
+        // listingId needs to be set
+        console.error('Listing ID not available')
+        return null
+      }
+      const imageUrl = `https://api.intern.d-tt.nl/api/houses/${this.listingId}/upload`
+
+      const imagePayload = new FormData()
+      imagePayload.append('image', image)
+
+      try {
+        const response = await axios.post(imageUrl, imagePayload, {
+          headers: {
+            'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY',
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        return response.data.imageUrl // Adjust based on your API's response format
+      } catch (error) {
+        console.error('Error uploading image:', error)
+        return null
+      }
     }
+  },
+  goBack() {
+    this.$router.back()
   }
 }
 </script>
@@ -73,3 +111,4 @@ h1,
   margin-left: 18rem;
 }
 </style>
+
