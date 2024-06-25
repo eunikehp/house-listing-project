@@ -60,11 +60,9 @@ export default {
     editListing() {
       this.$router.push({ name: 'EditListing' })
     },
-    handleModalClose(deleted) {
+    handleModalClose() {
       this.showDeleteModal = false
-      if (deleted) {
-        this.$emit('deleted')
-      }
+      this.$emit('deleted')
     }
   }
 }

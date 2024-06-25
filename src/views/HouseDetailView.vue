@@ -25,6 +25,7 @@ import Recommendation from '@/components/Recommendation.vue'
 import HouseDetail from '@/components/HouseDetail.vue'
 import axios from 'axios'
 import { API_KEY, ENDPOINTS } from '@/apiConfig'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'HouseDetailView',
@@ -32,32 +33,34 @@ export default {
   props: ['id'],
   data() {
     return {
-      house: null,
       loading: true,
       error: null
+    }
+  },
+  computed: {
+    ...mapState(['houses']),
+    house() {
+      return this.houses.find((house) => house.id == this.$route.params.id)
     }
   },
   created() {
     this.fetchHouse()
   },
   methods: {
-    fetchHouse() {
-      axios
-        .get(ENDPOINTS.GET_LISTING(this.$route.params.id), {
-          headers: { 'X-Api-Key': API_KEY }
-        })
-        .then((response) => {
-          const houses = response.data
-          this.house = houses.find((house) => house.id == this.id)
-          if (!this.house) {
-            this.error = 'House not found'
-          }
-          this.loading = false
-        })
-        .catch((error) => {
-          console.error('Error fetching house details:', error)
-          this.error = error.message || 'Failed to fetch house details'
-        })
+    ...mapActions(['fetchDatafromAPI']),
+    async fetchHouse() {
+      try {
+        this.loading = true
+        await this.fetchDatafromAPI()
+        if (!this.house) {
+          throw new Error('House not found')
+        }
+      } catch (error) {
+        console.error('Error fetching house details:', error)
+        this.error = error.message || 'Failed to fetch house details'
+      } finally {
+        this.loading = false
+      }
     },
     goBack() {
       this.$router.push({ name: 'Home' })

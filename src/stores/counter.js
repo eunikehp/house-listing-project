@@ -1,5 +1,4 @@
 
-
 import { createStore } from 'vuex';
 import axios from 'axios';
 import { ENDPOINTS, API_KEY, API_BASE_URL } from '@/apiConfig';
@@ -25,6 +24,7 @@ export default createStore({
         commit('SET_HOUSES', response.data);
       } catch (error) {
         console.error('Error fetching data:', error)
+        throw error;
       }
     },
   },
