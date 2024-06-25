@@ -167,14 +167,24 @@ span button {
   cursor: pointer;
 }
 
+.sort-button-by-price,
+.sort-button-by-size {
+  background-color: var(--dtt-c-tertiary-2);
+  border-color: var(--dtt-c-tertiary-2);
+}
+
+.sort-button-by-price:focus,
+.sort-button-by-size:focus {
+  background-color: var(--dtt-c-primary);
+  border-color: var(--dtt-c-primary);
+}
+
 .sort-button-by-price {
   border-radius: 5px 0 0 5px;
 }
 
 .sort-button-by-size {
   border-radius: 0 5px 5px 0;
-  background-color: var(--dtt-c-tertiary-2);
-  border-color: var(--dtt-c-tertiary-2);
 }
 
 .input-container {
