@@ -60,7 +60,7 @@ export default {
         })
     },
     goBack() {
-      this.$router.back()
+      this.$router.push({ name: 'Home' })
     },
     handleHouseDeleted() {
       this.$router.push({ name: 'Home' })

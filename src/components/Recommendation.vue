@@ -33,7 +33,8 @@ export default {
   },
   computed: {
     limitedRecommendations() {
-      return this.recommendations.slice(0, 3)
+      // return this.recommendations.slice(0, 3)
+      return [...this.recommendations].sort(() => (Math.random() > 0.5 ? 1 : -1)).slice(0, 3)
     }
   },
   mounted() {
@@ -51,7 +52,7 @@ export default {
         })
     },
     selectHouse(house) {
-      this.$router.push({ name: 'HouseDetailView', params: { id: house.id } })
+      this.$router.push({ name: 'HouseDetail', params: { id: house.id } })
     }
   }
 }

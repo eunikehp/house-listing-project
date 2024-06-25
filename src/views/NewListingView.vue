@@ -81,7 +81,7 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         })
-        return response.data.imageUrl // Adjust based on your API's response format
+        return response.data.imageUrl
       } catch (error) {
         console.error('Error uploading image:', error)
         return null

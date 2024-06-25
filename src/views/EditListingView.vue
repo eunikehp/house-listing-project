@@ -57,7 +57,7 @@ export default {
     },
     submitForm(updatedData) {
       axios
-        .put(ENDPOINTS.UPDATE_LISTING(this.listingId), updatedData, {
+        .post(ENDPOINTS.UPDATE_LISTING(this.listingId), updatedData, {
           headers: { 'X-Api-Key': API_KEY }
         })
         .then((response) => {
