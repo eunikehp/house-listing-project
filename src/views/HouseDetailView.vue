@@ -23,8 +23,6 @@
 <script>
 import Recommendation from '@/components/Recommendation.vue'
 import HouseDetail from '@/components/HouseDetail.vue'
-import axios from 'axios'
-import { API_KEY, ENDPOINTS } from '@/apiConfig'
 import { mapState, mapActions } from 'vuex'
 
 export default {

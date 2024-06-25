@@ -10,9 +10,10 @@
 
 
 <script>
-import { API_BASE_URL, API_KEY, ENDPOINTS } from '@/apiConfig'
+import { API_KEY, ENDPOINTS } from '@/apiConfig'
 import TheForm from '../components/TheForm.vue'
 import axios from 'axios'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'NewListingView',
@@ -36,46 +37,42 @@ export default {
     }
   },
   methods: {
-    async submitForm(formData, image) {
+    ...mapActions(['createNewListing']),
+    async submitForm(formData, imageFile) {
       console.log('Submitting form data:', formData)
 
-      const imageUrl = await this.uploadImage(image)
-      if (!imageUrl) {
-        console.error('Failed to upload image')
-        return
-      }
-
-      const payload = {
-        ...formData,
-        image: imageUrl, // use the uploaded image URL
-        hasGarage: formData.hasGarage === 'yes' ? true : false // Convert 'yes'/'no' to boolean
-      }
-
       try {
-        const response = await axios.post(API_BASE_URL, payload, {
-          headers: {
-            'X-Api-Key': API_KEY,
-            'Content-Type': 'application/json'
-          }
+        // Create listing to get house ID
+        const response = await this.createNewListing(formData)
+        const houseId = response.data.id
+
+        // Upload image with house ID
+        const imageUrl = await this.uploadImage(imageFile, houseId)
+
+        const payload = {
+          ...formData,
+          image: imageUrl, // the uploaded image URL
+          hasGarage: formData.hasGarage === 'Yes' ? true : false // Convert 'yes'/'no' to boolean
+        }
+
+        //Update listing with the image
+        await axios.post(ENDPOINTS.UPDATE_LISTING(houseId), payload, {
+          headers: { 'X-Api-Key': API_KEY, 'Content-Type': 'application/json' }
         })
-        console.log('Listing created:', response.data)
-        this.$router.push({ name: 'Home' })
+
+        console.log('Listing created successfully')
+        // route to new listing
+        this.$router.push({ name: 'HouseDetail', params: { id: houseId } })
       } catch (error) {
         console.error('Error creating listing:', error)
       }
     },
-    async uploadImage(image) {
-      if (!this.listingId) {
-        // listingId needs to be set
-        console.error('Listing ID not available')
-        return null
-      }
-
+    async uploadImage(imageFile, houseId) {
       const imagePayload = new FormData()
-      imagePayload.append('image', image)
+      imagePayload.append('image', imageFile)
 
       try {
-        const response = await axios.post(ENDPOINTS.UPLOAD_IMAGE(this.listingId), imagePayload, {
+        const response = await axios.post(ENDPOINTS.UPLOAD_IMAGE(houseId), imagePayload, {
           headers: {
             'X-Api-Key': API_KEY,
             'Content-Type': 'multipart/form-data'

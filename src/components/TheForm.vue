@@ -137,21 +137,21 @@ export default {
   data() {
     return {
       localFormData: { ...this.formData },
-      image: null // to store the selected image file
+      imageFile: null
     }
   },
   methods: {
     handleImageUpload(event) {
       const file = event.target.files[0]
       if (file) {
-        this.image = file
+        this.imageFile = file
       }
     },
     handleSubmit() {
       const formDataWithoutImage = {
         ...this.localFormData
       }
-      this.onSubmit(formDataWithoutImage, this.image)
+      this.onSubmit(formDataWithoutImage, this.imageFile)
     }
   },
   watch: {
@@ -242,18 +242,3 @@ button:active {
   justify-content: flex-end;
 }
 </style>
-
-{
-  "price": 90,
-  "bedrooms": 2,
-  "bathrooms": 2,
-  "size": 500,
-  "description": "oui",
-  "streetName": "streetlah",
-  "houseNumber": 20,
-  "numberAddition": "A",
-  "city": "assas",
-  "zip": "asasdd",
-  "constructionYear": 2000,
-  "hasGarage": false
-}
