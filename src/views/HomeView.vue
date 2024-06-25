@@ -47,17 +47,14 @@
 
 <script>
 import HouseCard from '../components/HouseCard.vue'
-import { API_BASE_URL, API_KEY } from '@/apiConfig'
-import axios from 'axios'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'HomeView',
   components: { HouseCard },
   data() {
     return {
-      houses: [],
       sortOption: '',
-      filteredHouses: [],
       searchHouses: '',
       showResult: false,
       totalResults: null,
@@ -69,43 +66,44 @@ export default {
     this.fetchDatafromAPI()
   },
   computed: {
+    ...mapState(['houses', 'filteredHouses']),
     results() {
       return this.totalResults > 1 ? 'results' : 'result'
     }
   },
   methods: {
-    fetchDatafromAPI() {
-      axios
-        .get(API_BASE_URL, { headers: { 'X-Api-Key': API_KEY } })
-        .then((response) => {
-          this.houses = response.data
-          this.filteredHouses = response.data
-        })
-        .catch((error) => {
-          console.error('Error fetching data:', error)
-        })
-    },
+    ...mapActions(['fetchDatafromAPI']),
+
     // select a house to show the details
     selectHouse(house) {
       this.$router.push({ name: 'HouseDetail', params: { id: house.id } })
     },
+
     // go to 'create a new listing 'page'
     goToCreateListing() {
       this.$router.push({ name: 'CreateListing' })
     },
+
     // sort house by price and size
     sortHouses(option) {
       this.sortOption = option
       if (option === 'price') {
-        this.filteredHouses.sort((a, b) => a.price - b.price)
+        this.$store.commit(
+          'SET_FILTERED_HOUSES',
+          [...this.filteredHouses].sort((a, b) => a.price - b.price)
+        )
       } else if (option === 'size') {
-        this.filteredHouses.sort((a, b) => a.size - b.size)
+        this.$store.commit(
+          'SET_FILTERED_HOUSES',
+          [...this.filteredHouses].sort((a, b) => a.size - b.size)
+        )
       }
     },
+
     // filter houses based on search term
     filterHouses() {
       if (this.searchHouses) {
-        this.filteredHouses = this.houses.filter(
+        const filtered = this.houses.filter(
           (house) =>
             house.location.street.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
             house.location.city.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
@@ -113,15 +111,16 @@ export default {
             house.price.toString().includes(this.searchHouses) ||
             house.size.toString().includes(this.searchHouses)
         )
-        if (this.filteredHouses.length > 0) {
+        this.$store.commit('SET_FILTERED_HOUSES', filtered)
+        if (filtered.length > 0) {
           this.showResult = true
-          this.totalResults = this.filteredHouses.length
-        } else if (this.filteredHouses.length === 0) {
+          this.totalResults = filtered.length
+        } else if (filtered.length === 0) {
           this.showResult = false
           this.showEmptyHouses = true
         }
       } else {
-        this.filteredHouses = this.houses
+        this.$store.commit('SET_FILTERED_HOUSES', this.houses)
         this.showResult = false
         this.showEmptyHouses = false
       }
