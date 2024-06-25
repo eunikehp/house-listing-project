@@ -47,6 +47,7 @@
 
 <script>
 import HouseCard from '../components/HouseCard.vue'
+import { API_BASE_URL, API_KEY } from '@/apiConfig'
 import axios from 'axios'
 
 export default {
@@ -74,11 +75,8 @@ export default {
   },
   methods: {
     fetchDatafromAPI() {
-      const apiUrl = 'https://api.intern.d-tt.nl/api/houses'
-      const apiKey = import.meta.env.VITE_LISTING_API_KEY
-
       axios
-        .get(apiUrl, { headers: { 'X-Api-Key': apiKey } })
+        .get(API_BASE_URL, { headers: { 'X-Api-Key': API_KEY } })
         .then((response) => {
           this.houses = response.data
           this.filteredHouses = response.data

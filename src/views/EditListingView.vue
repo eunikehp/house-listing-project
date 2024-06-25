@@ -10,6 +10,7 @@
   
   
 <script>
+import { ENDPOINTS, API_KEY } from '@/apiConfig'
 import TheForm from '../components/TheForm.vue'
 import axios from 'axios'
 
@@ -45,11 +46,8 @@ export default {
   },
   methods: {
     fetchListingData() {
-      const url = 'https://api.intern.d-tt.nl/api/${this.listingId}'
-      const apiKey = import.meta.env.VITE_LISTING_API_KEY
-
       axios
-        .get(url, { headers: { 'X-Api-Key': apiKey } })
+        .get(ENDPOINTS.GET_LISTING(this.listingId), { headers: { 'X-Api-Key': API_KEY } })
         .then((response) => {
           this.formData = response.data
         })
@@ -58,9 +56,10 @@ export default {
         })
     },
     submitForm(updatedData) {
-      const url = 'https://api.intern.d-tt.nl/api/${this.listingId}'
       axios
-        .put(url, updatedData, { headers: { 'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY' } })
+        .put(ENDPOINTS.UPDATE_LISTING(this.listingId), updatedData, {
+          headers: { 'X-Api-Key': API_KEY }
+        })
         .then((response) => {
           console.log('Listing updated:', response.data)
           this.$router.push({ name: 'Home' })

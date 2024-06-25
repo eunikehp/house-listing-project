@@ -10,6 +10,7 @@
 
 
 <script>
+import { API_BASE_URL, API_KEY, ENDPOINTS } from '@/apiConfig'
 import TheForm from '../components/TheForm.vue'
 import axios from 'axios'
 
@@ -44,9 +45,6 @@ export default {
         return
       }
 
-      const url = 'https://api.intern.d-tt.nl/api/houses'
-      const apiKey = import.meta.env.VITE_LISTING_API_KEY
-
       const payload = {
         ...formData,
         image: imageUrl, // use the uploaded image URL
@@ -54,9 +52,9 @@ export default {
       }
 
       try {
-        const response = await axios.post(url, payload, {
+        const response = await axios.post(API_BASE_URL, payload, {
           headers: {
-            'X-Api-Key': apiKey,
+            'X-Api-Key': API_KEY,
             'Content-Type': 'application/json'
           }
         })
@@ -72,15 +70,14 @@ export default {
         console.error('Listing ID not available')
         return null
       }
-      const imageUrl = `https://api.intern.d-tt.nl/api/houses/${this.listingId}/upload`
 
       const imagePayload = new FormData()
       imagePayload.append('image', image)
 
       try {
-        const response = await axios.post(imageUrl, imagePayload, {
+        const response = await axios.post(ENDPOINTS.UPLOAD_IMAGE(this.listingId), imagePayload, {
           headers: {
-            'X-Api-Key': '_lmzUrWvCsf7d1BI6iStJRNK0TpeQXyY',
+            'X-Api-Key': API_KEY,
             'Content-Type': 'multipart/form-data'
           }
         })
@@ -89,10 +86,10 @@ export default {
         console.error('Error uploading image:', error)
         return null
       }
+    },
+    goBack() {
+      this.$router.back()
     }
-  },
-  goBack() {
-    this.$router.back()
   }
 }
 </script>

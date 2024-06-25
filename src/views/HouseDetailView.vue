@@ -24,6 +24,7 @@
 import Recommendation from '@/components/Recommendation.vue'
 import HouseDetail from '@/components/HouseDetail.vue'
 import axios from 'axios'
+import { API_KEY, ENDPOINTS } from '@/apiConfig'
 
 export default {
   name: 'HouseDetailView',
@@ -41,12 +42,9 @@ export default {
   },
   methods: {
     fetchHouse() {
-      const url = `https://api.intern.d-tt.nl/api/houses/${this.$route.params.id}`
-      const apiKey = import.meta.env.VITE_LISTING_API_KEY
-
       axios
-        .get(url, {
-          headers: { 'X-Api-Key': apiKey }
+        .get(ENDPOINTS.GET_LISTING(this.$route.params.id), {
+          headers: { 'X-Api-Key': API_KEY }
         })
         .then((response) => {
           const houses = response.data

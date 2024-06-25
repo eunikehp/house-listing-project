@@ -21,6 +21,7 @@
 <script>
 import axios from 'axios'
 import HouseCard from './HouseCard.vue'
+import { API_BASE_URL, API_KEY } from '@/apiConfig'
 
 export default {
   name: 'Recommendation',
@@ -40,11 +41,8 @@ export default {
   },
   methods: {
     fetchRecommendations() {
-      const apiUrl = 'https://api.intern.d-tt.nl/api/houses'
-      const apiKey = import.meta.env.VITE_LISTING_API_KEY
-
       axios
-        .get(apiUrl, { headers: { 'X-Api-Key': apiKey } })
+        .get(API_BASE_URL, { headers: { 'X-Api-Key': API_KEY } })
         .then((response) => {
           this.recommendations = response.data
         })
@@ -62,7 +60,6 @@ export default {
 <style scoped>
 .recommendations {
   margin: 30px 70px;
-  /* max-width: 300px; */
 }
 
 .house-list {

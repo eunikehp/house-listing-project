@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { API_KEY, ENDPOINTS } from '@/apiConfig'
 import axios from 'axios'
 
 export default {
@@ -25,11 +26,8 @@ export default {
       this.onClose(false)
     },
     deleteListing() {
-      const url = `https://api.intern.d-tt.nl/api/houses/${this.id}`
-      const apiKey = import.meta.env.VITE_LISTING_API_KEY
-
       axios
-        .delete(url, { headers: { 'X-Api-Key': apiKey } })
+        .delete(ENDPOINTS.DELETE_LISTING(this.id), { headers: { 'X-Api-Key': API_KEY } })
         .then((response) => {
           console.log('Listing deleted:', response.data)
           this.onClose(true)
