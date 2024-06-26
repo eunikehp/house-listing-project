@@ -34,7 +34,6 @@
   --dtt-c-text-hyperlink: #067bc2;
 }
 
-
 *,
 *::before,
 *::after {
@@ -43,7 +42,7 @@
 }
 
 body {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-size: 18px;
   min-height: 100vh;
   display: flex;
@@ -56,7 +55,8 @@ body {
 }
 
 /* Header styles */
-h1, h2 {
+h1,
+h2 {
   font-family: 'Montserrat', sans-serif;
   color: var(--dtt-c-text-primary);
 }
@@ -75,7 +75,7 @@ h2 {
 }
 
 p {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   color: var(--dtt-c-text-secondary);
 }
 
@@ -88,7 +88,7 @@ input {
 a {
   text-decoration: none;
   background-color: transparent;
-  color:var(--dtt-c-tertiary-2);
+  color: var(--dtt-c-tertiary-2);
 }
 
 button {
@@ -106,7 +106,7 @@ button {
 nav {
   font-family: 'Montserrat', sans-serif;
   padding: 30px;
-  margin: 0 3rem;
+  /* margin: 0 3rem; */
 }
 
 nav a {
@@ -134,8 +134,7 @@ nav a.router-link-exact-active {
   padding: auto 3rem;
 }
 
-
-/* @import './base.css';
+/* 
 
 #app {
   max-width: 1280px;

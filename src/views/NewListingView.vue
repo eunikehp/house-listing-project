@@ -4,7 +4,7 @@
       <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to overview
     </div>
     <h1>Create new listing</h1>
-    <the-form :formData="formData" :onSubmit="submitForm" />
+    <the-form :isEditMode="false" :formData="formData" :onSubmit="submitForm" />
   </div>
 </template>
 
@@ -103,6 +103,20 @@ export default {
 h1,
 .back-button {
   margin-left: 18rem;
+}
+
+@media screen and (max-width: 600px) {
+  h1,
+  .back-button {
+    margin-left: 5rem;
+  }
+}
+
+@media screen and (max-width: 1080px) and (min-width: 600px) {
+  h1,
+  .back-button {
+    margin-left: 12rem;
+  }
 }
 </style>
 

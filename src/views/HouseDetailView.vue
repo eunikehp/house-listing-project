@@ -94,6 +94,44 @@ export default {
 
 .container {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 55% 45%;
+}
+
+@media (max-width: 600px) {
+  .page {
+    margin-left: 3rem;
+    max-width: 30rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .card {
+    margin-left: 0;
+  }
+
+  .back-button {
+    margin-left: 0rem;
+  }
+}
+
+@media screen and (max-width: 1080px) and (min-width: 600px) {
+  .page {
+    margin-left: 5rem;
+    max-width: 30rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .card {
+    margin-left: 0;
+  }
+
+  .back-button {
+    margin-left: 0rem;
+  }
 }
 </style>

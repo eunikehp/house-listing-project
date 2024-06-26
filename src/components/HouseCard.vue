@@ -17,10 +17,14 @@
         </div>
       </div>
       <div class="card-button" v-if="showButtons">
-        <img src="@/assets/icons/ic_edit@3x.png" height="12px" @click="editListing" />
+        <img src="@/assets/icons/ic_edit@3x.png" height="12px" @click.stop="editListing" />
       </div>
       <div class="card-button" v-if="showButtons">
-        <img src="@/assets/icons/ic_delete@3x.png" height="12px" @click="showDeleteModal = true" />
+        <img
+          src="@/assets/icons/ic_delete@3x.png"
+          height="12px"
+          @click.stop="showDeleteModal = true"
+        />
       </div>
       <delete-listing :id="id" :show="showDeleteModal" :onClose="handleModalClose" />
     </a>
@@ -52,7 +56,7 @@ export default {
   },
   methods: {
     editListing() {
-      this.$router.push({ name: 'EditListing' })
+      this.$router.push({ name: 'EditListing', params: { id: this.id } })
     },
     handleModalClose(deleted) {
       this.showDeleteModal = false
@@ -92,7 +96,7 @@ export default {
 
 .listing-information {
   text-align: left;
-  max-width: auto;
+  min-width: 14rem;
 }
 
 .listing-information p,

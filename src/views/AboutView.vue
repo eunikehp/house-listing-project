@@ -23,22 +23,36 @@
 </template>
 
 <style>
-@media (min-width: 1024px) {
+.about {
+  max-width: 50rem;
+  margin: 3rem auto auto 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.company {
+  display: flex;
+  flex: row;
+}
+
+.company div {
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 600px) {
   .about {
-    max-width: 50rem;
-    margin: auto 20rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin-top: 3rem;
+    margin-left: 5rem;
+    max-width: 27rem;
   }
+}
 
-  .company {
-    display: flex;
-    flex: row;
-  }
-
-  .company div {
-    margin-left: 20px;
+@media screen and (max-width: 1080px) and (min-width: 600px) {
+  .about {
+    margin-top: 3rem;
+    margin-left: 12rem;
+    max-width: 27rem;
   }
 }
 </style>

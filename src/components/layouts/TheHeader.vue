@@ -29,11 +29,25 @@ header {
 
 .wrapper {
   margin: auto;
-  max-width: 80ch;
+  max-width: 10rem;
   text-align: left;
   display: flex;
   align-items: center;
-  padding: 1rem;
+  /* padding: 1rem; */
   font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    margin: auto;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+  header {
+    padding-left: 0;
+    margin: auto;
+  }
 }
 </style>

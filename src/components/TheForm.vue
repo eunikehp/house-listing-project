@@ -116,7 +116,7 @@
       />
     </div>
     <div class="post-button">
-      <button type="submit">POST</button>
+      <button type="submit">{{ isEditMode ? 'SAVE' : 'POST' }}</button>
     </div>
   </form>
 </template>
@@ -132,6 +132,9 @@ export default {
     onSubmit: {
       type: Function,
       required: true
+    },
+    isEditMode: {
+      type: Boolean
     }
   },
   data() {
@@ -240,5 +243,17 @@ button:active {
 .post-button {
   display: flex;
   justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  form {
+    margin-left: 5rem;
+  }
+}
+
+@media screen and (max-width: 1080px) and (min-width: 600px) {
+  form {
+    margin-left: 12rem;
+  }
 }
 </style>

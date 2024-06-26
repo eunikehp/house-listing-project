@@ -4,7 +4,7 @@
       <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to detail page
     </div>
     <h1>Edit listing</h1>
-    <the-form :formData="formData" :onSubmit="submitForm" />
+    <the-form :isEditMode="true" :formData="formData" :onSubmit="submitForm" />
   </div>
 </template>
   
@@ -13,6 +13,7 @@
 import { ENDPOINTS, API_KEY } from '@/apiConfig'
 import TheForm from '../components/TheForm.vue'
 import axios from 'axios'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'EditListingView',
@@ -20,54 +21,139 @@ export default {
   data() {
     return {
       formData: {
-        image: '',
-        price: '',
-        rooms: {
-          bedrooms: null,
-          bathrooms: null
-        },
-        size: '',
+        price: null,
+        bedrooms: null,
+        bathrooms: null,
+        size: null,
         description: '',
-        location: {
-          street: '',
-          houseNumber: '',
-          houseNumberAddition: null,
-          city: '',
-          zip: ''
-        },
+        streetName: '',
+        houseNumber: null,
+        numberAddition: '',
+        city: '',
+        zip: '',
         constructionYear: null,
         hasGarage: ''
       },
       listingId: this.$route.params.id
     }
   },
+  watch: {
+    house: {
+      handler(newData) {
+        if (newData) {
+          this.formData = {
+            image: newData.image,
+            price: newData.price,
+            bedrooms: newData.rooms.bedrooms,
+            bathrooms: newData.rooms.bathrooms,
+            size: newData.size,
+            description: newData.description,
+            streetName: newData.location.street,
+            houseNumber: newData.location.houseNumber,
+            numberAddition: newData.location.houseNumberAddition,
+            city: newData.location.city,
+            zip: newData.location.zip,
+            constructionYear: newData.constructionYear,
+            hasGarage: newData.hasGarage
+          }
+        }
+      },
+      immediate: true
+    }
+  },
+  computed: {
+    ...mapState(['selectedHouse']),
+    house() {
+      return this.selectedHouse
+    }
+  },
   mounted() {
-    this.fetchListingData()
+    console.log(this.listingId)
+    this.fetchListingData(this.listingId)
   },
   methods: {
-    fetchListingData() {
-      axios
-        .get(ENDPOINTS.GET_LISTING(this.listingId), { headers: { 'X-Api-Key': API_KEY } })
-        .then((response) => {
-          this.formData = response.data
+    ...mapActions(['fetchListingData', 'editListing']),
+    async submitForm(updatedData, imageFile) {
+      console.log('Submitting form data:', updatedData)
+
+      try {
+        // Upload image with house ID
+        const imageUrl = await this.uploadImage(imageFile, this.listingId)
+
+        const payload = {
+          ...updatedData,
+          image: imageUrl, // the uploaded image URL
+          hasGarage: updatedData.hasGarage === 'Yes' ? true : false // Convert 'yes'/'no' to boolean
+        }
+
+        //Update listing with the image
+        await axios.post(ENDPOINTS.UPDATE_LISTING(this.listingId), payload, {
+          headers: { 'X-Api-Key': API_KEY, 'Content-Type': 'application/json' }
         })
-        .catch((error) => {
-          console.error('Error fetching listing data:', error)
-        })
+
+        await this.editListing({ houseId: this.listingId, updatedData: payload })
+
+        console.log('Listing created successfully')
+        // route to the listing
+        this.$router.push({ name: 'HouseDetail', params: { id: this.listingId } })
+      } catch (error) {
+        console.error('Error creating listing:', error)
+      }
     },
-    submitForm(updatedData) {
-      axios
-        .post(ENDPOINTS.UPDATE_LISTING(this.listingId), updatedData, {
-          headers: { 'X-Api-Key': API_KEY }
+    async uploadImage(imageFile, houseId) {
+      const imagePayload = new FormData()
+      imagePayload.append('image', imageFile)
+
+      try {
+        const response = await axios.post(ENDPOINTS.UPLOAD_IMAGE(houseId), imagePayload, {
+          headers: {
+            'X-Api-Key': API_KEY,
+            'Content-Type': 'multipart/form-data'
+          }
         })
-        .then((response) => {
-          console.log('Listing updated:', response.data)
-          this.$router.push({ name: 'Home' })
-        })
-        .catch((error) => {
-          console.error('Error updating listing data:', error)
-        })
+        return response.data.imageUrl
+      } catch (error) {
+        console.error('Error uploading image:', error)
+        return null
+      }
     },
+    // try {
+
+    //   if (imageFile) {
+    //     const imageUrl = await this.uploadImage(imageFile)
+    //     console.log('ImageUrl:', imageUrl)
+    //     if (imageUrl) {
+    //       updatedData.imageFile = imageUrl
+    //     }
+    //   }
+    //   const payload = {
+    //     ...updatedData,
+    //     hasGarage: updatedData.hasGarage === 'Yes' ? true : false
+    //   }
+
+    //   await this.editListing({ houseId: this.listingId, updatedData: payload })
+    //   this.$router.push({ name: 'Home' })
+    // } catch (error) {
+    //   console.error('Error editing listing:', error)
+    // }
+    // },
+    // async uploadImage(imageFile) {
+    //   const imagePayload = new FormData()
+    //   imagePayload.append('image', imageFile)
+
+    //   try {
+    //     const response = await axios.post(ENDPOINTS.UPLOAD_IMAGE(this.listingId), imagePayload, {
+    //       headers: {
+    //         'X-Api-Key': API_KEY,
+    //         'Content-Type': 'multipart/form-data'
+    //       }
+    //     })
+    //     return response.data.imageUrl
+    //   } catch (error) {
+    //     console.error('Error uploading image:', error)
+    //     return null
+    //   }
+    // },
     goBack() {
       this.$router.back()
     }
@@ -87,5 +173,19 @@ export default {
 h1,
 .back-button {
   margin-left: 18rem;
+}
+
+@media (max-width: 600px) {
+  h1,
+  .back-button {
+    margin-left: 5rem;
+  }
+}
+
+@media screen and (max-width: 1080px) and (min-width: 600px) {
+  h1,
+  .back-button {
+    margin-left: 12rem;
+  }
 }
 </style>
