@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .about {
   max-width: 50rem;
   margin: 3rem auto auto 18rem;
@@ -38,6 +38,10 @@
 
 .company div {
   margin-left: 20px;
+}
+
+a {
+  color: var(--dtt-c-text-hyperlink);
 }
 
 @media screen and (max-width: 600px) {

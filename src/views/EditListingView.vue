@@ -117,43 +117,6 @@ export default {
         return null
       }
     },
-    // try {
-
-    //   if (imageFile) {
-    //     const imageUrl = await this.uploadImage(imageFile)
-    //     console.log('ImageUrl:', imageUrl)
-    //     if (imageUrl) {
-    //       updatedData.imageFile = imageUrl
-    //     }
-    //   }
-    //   const payload = {
-    //     ...updatedData,
-    //     hasGarage: updatedData.hasGarage === 'Yes' ? true : false
-    //   }
-
-    //   await this.editListing({ houseId: this.listingId, updatedData: payload })
-    //   this.$router.push({ name: 'Home' })
-    // } catch (error) {
-    //   console.error('Error editing listing:', error)
-    // }
-    // },
-    // async uploadImage(imageFile) {
-    //   const imagePayload = new FormData()
-    //   imagePayload.append('image', imageFile)
-
-    //   try {
-    //     const response = await axios.post(ENDPOINTS.UPLOAD_IMAGE(this.listingId), imagePayload, {
-    //       headers: {
-    //         'X-Api-Key': API_KEY,
-    //         'Content-Type': 'multipart/form-data'
-    //       }
-    //     })
-    //     return response.data.imageUrl
-    //   } catch (error) {
-    //     console.error('Error uploading image:', error)
-    //     return null
-    //   }
-    // },
     goBack() {
       this.$router.back()
     }

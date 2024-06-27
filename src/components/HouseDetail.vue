@@ -90,7 +90,6 @@ header {
 }
 
 header img {
-  /* margin-right: 20px; */
   height: 1rem;
   cursor: pointer;
   margin-left: auto;
