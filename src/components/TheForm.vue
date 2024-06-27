@@ -50,19 +50,13 @@
       />
     </div>
     <div class="form-control">
-      <label for="price">Price*</label>
-      <input
-        id="price"
-        type="number"
-        placeholder="e.g. €150.000"
-        v-model="formData.price"
-        required
-      />
+      <label for="price">Price* (€)</label>
+      <input id="price" type="number" placeholder="e.g.150.000" v-model="formData.price" required />
     </div>
     <div class="form-column">
       <div>
-        <label for="size">Size*</label>
-        <input id="size" type="text" placeholder="e.g. 60m2" v-model="formData.size" required />
+        <label for="size">Size* (m2)</label>
+        <input id="size" type="text" placeholder="e.g. 60" v-model="formData.size" required />
       </div>
       <div>
         <label for="hasGarage">Garage*</label>

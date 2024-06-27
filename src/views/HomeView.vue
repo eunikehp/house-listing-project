@@ -21,6 +21,7 @@
       </div>
       <span>
         <button class="sort-button-by-price" @click="sortHouses('price')">Price</button>
+        <button class="sort-button-by-city" @click="sortHouses('city')">City</button>
         <button class="sort-button-by-size" @click="sortHouses('size')">Size</button>
       </span>
     </div>
@@ -97,6 +98,21 @@ export default {
           'SET_FILTERED_HOUSES',
           [...this.filteredHouses].sort((a, b) => a.size - b.size)
         )
+      } else if (option === 'city') {
+        this.$store.commit(
+          'SET_FILTERED_HOUSES',
+          [...this.filteredHouses].sort((a, b) => {
+            const cityA = a.location.city.toUpperCase() // ignore upper and lowercase
+            const cityB = b.location.city.toUpperCase() // ignore upper and lowercase
+            if (cityA < cityB) {
+              return -1
+            }
+            if (cityA > cityB) {
+              return 1
+            }
+            return 0 // names must be equal
+          })
+        )
       }
     },
 
@@ -161,19 +177,16 @@ export default {
 }
 
 span button {
-  padding: 5px 30px;
+  padding: 5px 25px;
   font-size: 12px;
   cursor: pointer;
-}
-
-.sort-button-by-price,
-.sort-button-by-size {
   background-color: var(--dtt-c-tertiary-2);
   border-color: var(--dtt-c-tertiary-2);
 }
 
 .sort-button-by-price:focus,
-.sort-button-by-size:focus {
+.sort-button-by-size:focus,
+.sort-button-by-city:focus {
   background-color: var(--dtt-c-primary);
   border-color: var(--dtt-c-primary);
 }
