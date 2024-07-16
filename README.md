@@ -5,6 +5,58 @@
 A web application for house listings, which allows the user to view a list of houses that are currently available for sale, and create, edit and delete their
 own listings.
 
+## Key Features
+
+- View a list of available for sale houses
+- Search listing based on price, streetname, city, postal code
+- View listing details
+- Create, edit and delete their own listings.
+
+## Data Models/Vuex Store Layout
+
+1. Listing
+
+- id
+- price
+- bedrooms
+- bathrooms
+- size
+- description
+- streetName
+- houseNumber
+- numberAddition
+- city
+- zip
+- constructionYear
+- hasGarage
+
+2. App-wide State & Getters
+
+- houses
+- filteredHouses
+- selectedHouse
+
+3. Actions
+
+- fetchDatafromAPI
+- createNewListing
+- fetchListingData
+- editListing
+
+4. Mutations
+
+- SET_HOUSES
+- SET_FILTERED_HOUSES
+- SET_SELECTED_HOUSE
+
+## Design & Components/Layout
+
+- /home -> Home
+- /house/:id -> House Detail
+- /create -> Create New Listing
+- /house/:id/edit -> Edit Listing
+- /about -> About
+
 ## Technologies
 
 - Vue JS
@@ -31,39 +83,3 @@ own listings.
   listing or delete the listing.
 - As the owner of a listing, I want to be able to edit my listing(s).
 - As the owner of a listing, I want to be able to delete my listing(s).
-
-<!-- # house-listing-project
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-``` -->
