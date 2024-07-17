@@ -83,3 +83,11 @@ own listings.
   listing or delete the listing.
 - As the owner of a listing, I want to be able to edit my listing(s).
 - As the owner of a listing, I want to be able to delete my listing(s).
+
+## PICTURES
+<img width="1431" alt="Screenshot 2024-07-17 at 12 55 05" src="https://github.com/user-attachments/assets/a50038e5-7ea4-4f7f-8b8e-7e7c3427146c">
+<img width="1429" alt="Screenshot 2024-07-17 at 12 56 24" src="https://github.com/user-attachments/assets/bd2856cd-4c3c-4cdb-ba0b-3e5c237152a2">
+<img width="1436" alt="Screenshot 2024-07-17 at 12 56 54" src="https://github.com/user-attachments/assets/407691c4-7bb3-4f32-a37f-035d7b2ad3b5">
+<img width="1434" alt="Screenshot 2024-07-17 at 12 57 16" src="https://github.com/user-attachments/assets/38647638-6e91-4860-b144-413a08d2fcb7">
+
+
