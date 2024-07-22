@@ -1,11 +1,11 @@
 <template>
-  <div class="page">
-    <div class="menu">
+  <div class="container">
+    <div class="title">
       <h1>Houses</h1>
-      <button @click="goToCreateListing">CREATE NEW</button>
+      <button class="create-new-button" @click="goToCreateListing">CREATE NEW</button>
     </div>
-    <div class="menu-search">
-      <div class="input-container">
+    <div class="search-row">
+      <div class="search-bar">
         <input
           type="text"
           placeholder="Search for a house"
@@ -25,7 +25,9 @@
         <button class="sort-button-by-size" @click="sortHouses('size')">Size</button>
       </span>
     </div>
-    <div v-if="showResult" class="results">{{ totalResults }} {{ results }} found</div>
+    <div v-if="showResult" class="results">
+      <h2>{{ totalResults }} {{ results }} found</h2>
+    </div>
     <div v-if="showEmptyHouses" class="no-results">
       <img alt="no-results" src="@/assets/icons/img_empty_houses@3x.png" height="150px" /><span
         >No results found. <br />Please try another keyword.</span
@@ -150,25 +152,38 @@ export default {
 </script>
 
 <style scoped>
-.menu,
-.menu-search,
+.title,
+.search-row,
 .results,
 .no-results {
-  max-width: 60rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem auto;
-  padding-bottom: 1rem;
+  margin: 1rem 0;
+}
+
+.search-row {
+  margin-bottom: 1rem;
+}
+
+.create-new-button {
+  background: url('@/assets/icons/ic_plus_white@3x.png') no-repeat 15px center;
+  background-color: var(--dtt-c-primary);
+  background-size: 13px 13px;
+  border: none;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 8px 20px 8px 40px;
 }
 
 .results {
-  color: var(--dtt-c-text-primary);
-  font-weight: bold;
+  margin-top: 2rem;
 }
 
 .no-results {
   flex-direction: column;
+  margin-top: 6rem;
 }
 
 .no-results span {
@@ -177,16 +192,15 @@ export default {
 }
 
 span button {
-  padding: 5px 25px;
+  padding: 5px 35px;
+  height: 35px;
   font-size: 12px;
   cursor: pointer;
   background-color: var(--dtt-c-tertiary-2);
   border-color: var(--dtt-c-tertiary-2);
 }
 
-.sort-button-by-price:focus,
-.sort-button-by-size:focus,
-.sort-button-by-city:focus {
+span button:focus {
   background-color: var(--dtt-c-primary);
   border-color: var(--dtt-c-primary);
 }
@@ -199,42 +213,35 @@ span button {
   border-radius: 0 5px 5px 0;
 }
 
-.input-container {
-  position: relative;
-  width: 250px;
-}
-.input-container input {
-  width: 100%;
-  background: url('@/assets/icons/ic_search@3x.png') no-repeat 4px center;
-  background-size: 16px 16px;
-  font-size: 12px;
-  border-radius: 5px;
-  border: none;
-  background-color: var(--dtt-c-tertiary-1);
-  padding: 8px 50px 8px 30px;
-  color: var(--dtt-c-text-primary);
+.search-bar {
   position: relative;
 }
 
-.menu button {
-  background: url('@/assets/icons/ic_plus_white@3x.png') no-repeat 4px center;
-  background-color: var(--dtt-c-primary);
+.search-bar input {
+  width: 100%;
+  background: url('@/assets/icons/ic_search@3x.png') no-repeat 16px center;
   background-size: 16px 16px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+  font-size: 12px;
+  height: 35px;
+  width: 370px;
   border-radius: 5px;
-  padding: 5px 20px 5px 40px;
+  border: none;
+  padding: 8px 2px 8px 40px;
+  background-color: var(--dtt-c-tertiary-1);
+  color: var(--dtt-c-text-primary);
+}
+
+input::placeholder {
+  left: 45px;
 }
 
 .clear-button {
   position: absolute;
-  height: 15px;
-  right: 8px;
+  height: 16px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  right: 16px;
 }
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="container">
     <h1>About DTT Real Estate</h1>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus et aliquam in numquam
@@ -23,7 +23,7 @@
 </template>
 
 <style scoped>
-.about {
+.container {
   max-width: 50rem;
   margin: 3rem auto auto 18rem;
   display: flex;

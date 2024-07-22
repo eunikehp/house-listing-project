@@ -1,6 +1,6 @@
 <template>
   <div class="recommendations">
-    <h3>Recommended for you</h3>
+    <h2>Recommended for you</h2>
     <div class="house-list">
       <house-card
         v-for="house in limitedRecommendations"
@@ -60,13 +60,17 @@ export default {
 
 <style scoped>
 .recommendations {
-  margin: 30px 70px;
+  margin: 30px 0 0 70px;
+}
+
+.recommendations h2 {
+  font-size: 16px;
 }
 
 .house-list {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 @media screen and (max-width: 600px) {

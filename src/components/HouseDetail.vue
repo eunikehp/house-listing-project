@@ -1,36 +1,49 @@
 <template>
-  <img alt="image" :src="house.image" class="house-image" height="350" />
+  <img alt="house-image" :src="house.image" class="house-image" height="350" />
   <div class="description">
     <header>
-      <h3>{{ house.location.street }} {{ house.location.houseNumber }}</h3>
-      <img alt="edit" src="@/assets/icons/ic_edit@3x.png" height="15px" @click="editListing" />
+      <h1 class="header-title">{{ house.location.street }} {{ house.location.houseNumber }}</h1>
+      <img
+        class="card-icon"
+        alt="edit"
+        src="@/assets/icons/ic_edit@3x.png"
+        height="15px"
+        @click="editListing"
+      />
       <img
         alt="delete"
         src="@/assets/icons/ic_delete@3x.png"
         height="15px"
         @click="showDeleteModal = true"
+        class="card-icon"
       />
       <delete-listing :id="house.id" :show="showDeleteModal" :onClose="handleModalClose" />
     </header>
-    <div class="info">
-      <img alt="location" src="@/assets/icons/ic_location@3x.png" />{{ house.location.zip }}
-      {{ house.location.city }}
-    </div>
-    <div class="info">
-      <img alt="price" src="@/assets/icons/ic_price@3x.png" /><span>{{ house.price }}</span>
-      <img alt="size" src="@/assets/icons/ic_size@3x.png" /><span>{{ house.size }}m2</span>
-      <img alt="construction" src="@/assets/icons/ic_construction_date@3x.png" /><span
-        >Built in {{ house.constructionYear }}</span
-      >
-    </div>
-    <div class="info">
-      <img alt="bedrooms" src="@/assets/icons/ic_bed@3x.png" /><span>{{
-        house.rooms.bedrooms
-      }}</span>
-      <img alt="bathrooms" src="@/assets/icons/ic_bath@3x.png" /><span>{{
-        house.rooms.bathrooms
-      }}</span>
-      <img alt="garage" src="@/assets/icons/ic_garage@3x.png" /><span>{{ house.hasGarage }}</span>
+    <div class="listing-info">
+      <ul>
+        <li>
+          <img alt="location" src="@/assets/icons/ic_location@3x.png" />{{ house.location.zip }}
+          {{ house.location.city }}
+        </li>
+        <li>
+          <img alt="price" src="@/assets/icons/ic_price@3x.png" /><span>{{ house.price }}</span>
+          <img alt="size" src="@/assets/icons/ic_size@3x.png" /><span>{{ house.size }} m2</span>
+          <img alt="construction" src="@/assets/icons/ic_construction_date@3x.png" /><span
+            >Built in {{ house.constructionYear }}</span
+          >
+        </li>
+        <li>
+          <img alt="bedrooms" src="@/assets/icons/ic_bed@3x.png" /><span>{{
+            house.rooms.bedrooms
+          }}</span>
+          <img alt="bathrooms" src="@/assets/icons/ic_bath@3x.png" /><span>{{
+            house.rooms.bathrooms
+          }}</span>
+          <img alt="garage" src="@/assets/icons/ic_garage@3x.png" /><span>{{
+            house.hasGarage
+          }}</span>
+        </li>
+      </ul>
     </div>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit libero a
@@ -89,17 +102,34 @@ header {
   max-width: 40rem;
 }
 
-header img {
+.header-title {
+  margin: 0;
+  padding: 0;
+}
+
+.card-icon {
   height: 1rem;
   cursor: pointer;
   margin-left: auto;
 }
 
-.info {
+.listing-info {
   margin-bottom: 0.8rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dtt-c-text-secondary);
 }
 
-.info img,
+.listing-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.listing-info li {
+  margin-bottom: 10px;
+}
+
+.listing-info img,
 span {
   margin-right: 15px;
   height: 15px;

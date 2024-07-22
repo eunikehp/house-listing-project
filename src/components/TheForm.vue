@@ -168,6 +168,7 @@ form {
   margin-left: 18rem;
   max-width: 25rem;
   background-color: transparent;
+  font-size: 14px;
 }
 
 .form-column {
@@ -179,10 +180,6 @@ form {
 
 .form-control {
   margin: 1rem 0;
-}
-
-label {
-  font-weight: bold;
 }
 
 h2 {
@@ -197,29 +194,23 @@ select {
   border: none;
   height: 40px;
   width: 100%;
-  font: inherit;
   margin-top: 0.5rem;
   position: relative;
   padding: 12px;
 }
 
-input::placeholder {
-  position: absolute;
-  left: 12px;
+select {
+  max-width: 100%;
 }
 
 .description-input {
-  min-height: 100px;
+  min-height: 120px;
   position: relative;
 }
 
 .description-input::placeholder {
   position: absolute;
   top: 12px;
-}
-
-select {
-  width: auto;
 }
 
 button {

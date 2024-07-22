@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="container">
     <div class="back-button" @click="goBack">
       <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to detail page
     </div>
@@ -125,12 +125,13 @@ export default {
 </script>
   
 <style scoped >
-.page {
+.container {
   padding-bottom: 5rem;
   background-image: url('@/assets/icons/img_background@3x.png');
   background-size: cover;
   background-position: center center;
   min-height: 100vh;
+  width: 100%;
 }
 
 h1,

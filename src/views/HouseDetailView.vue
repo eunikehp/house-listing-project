@@ -1,9 +1,9 @@
 <template>
-  <div class="page">
+  <div class="container">
     <div class="back-button" @click="goBack">
       <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to overview
     </div>
-    <div class="container">
+    <div class="content">
       <!-- House Detail Section -->
       <div class="card" v-if="house">
         <house-detail :house="house" @deleted="handleHouseDeleted" />
@@ -73,37 +73,26 @@ export default {
 
 
 <style scoped>
-.page {
-  margin: auto 3rem;
-}
-
 .card {
   margin-top: 2rem;
-  margin-left: 14rem;
-  max-width: 40rem;
   display: flex;
   flex-direction: column;
   background-color: var(--dtt-c-background-2);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px rgba(177, 177, 177, 0.2);
 }
 
-.back-button {
-  cursor: pointer;
-  margin-left: 14rem;
-}
-
-.container {
+.content {
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 60% 40%;
 }
 
 @media (max-width: 600px) {
-  .page {
+  .container {
     margin-left: 3rem;
     max-width: 30rem;
   }
 
-  .container {
+  .content {
     display: flex;
     flex-direction: column;
   }
@@ -117,12 +106,12 @@ export default {
 }
 
 @media screen and (max-width: 1080px) and (min-width: 600px) {
-  .page {
+  .container {
     margin-left: 5rem;
     max-width: 30rem;
   }
 
-  .container {
+  .content {
     display: flex;
     flex-direction: column;
   }
