@@ -7,4 +7,4 @@ const ENDPOINTS = {
     UPDATE_LISTING: (id) => `${API_BASE_URL}/${id}`,
     UPLOAD_IMAGE: (id) => `${API_BASE_URL}/${id}/upload`,
 }
-export { API_BASE_URL, API_KEY, ENDPOINTS};
+export { API_BASE_URL, API_KEY, ENDPOINTS };

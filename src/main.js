@@ -1,7 +1,7 @@
 import './assets/base.css';
 import "@fontsource/open-sans"; //regular
 import "@fontsource/open-sans/600.css"; //semibold
-import "@fontsource/montserrat";
+import "@fontsource/montserrat"; //regular
 import "@fontsource/montserrat/500.css"; //medium
 import "@fontsource/montserrat/500-italic.css"; //medium-italic
 import "@fontsource/montserrat/600.css"; //semibold

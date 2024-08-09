@@ -1,10 +1,12 @@
 <template>
   <div class="container">
-    <div class="back-button" @click="goBack">
-      <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="14px" /> Back to overview
+    <div class="content">
+      <div class="btn back-btn" @click="goBack">
+        <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="14px" /> Back to overview
+      </div>
+      <h1>Create new listing</h1>
+      <the-form :isEditMode="false" :formData="formData" :onSubmit="submitForm" />
     </div>
-    <h1>Create new listing</h1>
-    <the-form :isEditMode="false" :formData="formData" :onSubmit="submitForm" />
   </div>
 </template>
 
@@ -101,21 +103,21 @@ export default {
   width: 100%;
 }
 
-h1,
-.back-button {
-  margin-left: 18rem;
+.content {
+  margin: auto;
+  width: 1000px;
 }
 
 @media screen and (max-width: 600px) {
   h1,
-  .back-button {
+  .back-btn {
     margin-left: 5rem;
   }
 }
 
 @media screen and (max-width: 1080px) and (min-width: 600px) {
   h1,
-  .back-button {
+  .back-btn {
     margin-left: 12rem;
   }
 }

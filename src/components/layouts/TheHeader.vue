@@ -17,23 +17,21 @@
 
 <style scoped>
 header {
-  width: 100%;
-  height: 4rem;
   background-color: var(--dtt-c-background-2);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  max-width: 100%;
+  height: 4rem;
+  padding: 0 180px;
   box-shadow: 0 5px 100px rgba(165, 165, 165, 0.2);
-  /* padding-left: 10rem; */
 }
 
 .wrapper {
   margin: auto;
-  max-width: 10rem;
+  /* max-width: 10rem; */
   text-align: left;
   display: flex;
   align-items: center;
-  /* padding: 1rem; */
   font-weight: 500;
 }
 
@@ -45,6 +43,7 @@ nav {
 
 nav a:link {
   font-weight: 500;
+  font-size: 18px;
   padding: 0 1.5rem;
   color: var(--dtt-c-tertiary-2);
 }

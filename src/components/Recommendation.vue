@@ -1,8 +1,8 @@
 <template>
   <div class="recommendations">
-    <h2>Recommended for you</h2>
+    <h3>Recommended for you</h3>
     <div class="house-list">
-      <house-card
+      <recommendation-list
         v-for="house in limitedRecommendations"
         :key="house.id"
         :id="house.id"
@@ -20,12 +20,12 @@
 
 <script>
 import axios from 'axios'
-import HouseCard from './HouseCard.vue'
+import RecommendationList from './RecommendationList.vue'
 import { API_BASE_URL, API_KEY } from '@/apiConfig'
 
 export default {
-  name: 'Recommendation',
-  components: { HouseCard },
+  name: 'RecommendationSection',
+  components: { RecommendationList },
   data() {
     return {
       recommendations: []
@@ -60,17 +60,12 @@ export default {
 
 <style scoped>
 .recommendations {
-  margin: 30px 0 0 70px;
-}
-
-.recommendations h2 {
-  font-size: 16px;
+  margin-left: 70px;
 }
 
 .house-list {
   display: flex;
-  flex-wrap: wrap;
-  /* margin-top: 1rem; */
+  flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {

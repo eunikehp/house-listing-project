@@ -60,7 +60,8 @@
       </div>
       <div>
         <label for="hasGarage">Garage*</label>
-        <select id="hasGarage" v-model="formData.hasGarage" placeholder="Select" required>
+        <select id="hasGarage" v-model="formData.hasGarage" required>
+          <option value="" disabled selected hidden>Select</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -165,15 +166,14 @@ export default {
 <style scoped>
 form {
   margin-top: 2rem;
-  margin-left: 18rem;
-  max-width: 25rem;
+  max-width: 20rem;
   background-color: transparent;
   font-size: 14px;
 }
 
 .form-column {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% auto;
   grid-gap: 15px;
   margin: 1rem 0;
 }
@@ -183,7 +183,6 @@ form {
 }
 
 h2 {
-  font-size: 1rem;
   margin: 0.5rem 0;
 }
 
@@ -200,7 +199,7 @@ select {
 }
 
 select {
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
 .description-input {

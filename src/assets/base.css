@@ -1,4 +1,6 @@
+/* ------------------------ */
 /* color palette from DTT style guides */
+/* ------------------------ */
 :root {
   --dtt-c-primary: #eb5440;
   --dtt-c-secondary: #4a4b4c;
@@ -11,15 +13,17 @@
   --dtt-c-text-hyperlink: #067bc2;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* ------------------------ */
+/* GENERAL STYLES */
+/* ------------------------ */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', sans-serif;
   color: var(--dtt-c-text-primary);
   background-color: var(--dtt-c-background-1);
   font-size: 18px;
@@ -31,27 +35,39 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Header styles */
+/* ------------------------ */
+/* COMPONENT STYLES */
+/* ------------------------ */
+
+/* HEADER */
 h1,
-h2 {
+h2,
+h3 {
   font-family: 'Montserrat', sans-serif;
   color: var(--dtt-c-text-primary);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 h1 {
   font-size: 32px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   margin: 20px 0 10px;
+  letter-spacing: -1px;
 }
 
 h2 {
-  font-size: 20px;
-  /* padding-bottom: 5px; */
+  font-size: 22px;
+  letter-spacing: -0.5px;
+}
+
+h3 {
+  font-size: 16px;
 }
 
 p {
   color: var(--dtt-c-text-secondary);
+  line-height: 1.5;
+  letter-spacing: 0.3px;
 }
 
 a {
@@ -60,10 +76,11 @@ a {
   color: var(--dtt-c-tertiary-2);
 }
 
-button {
+button,
+.btn {
   font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
   border: 1px solid var(--dtt-c-primary);
   background-color: var(--dtt-c-primary);
@@ -72,16 +89,22 @@ button {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.back-button {
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
+.back-btn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
   font-size: 16px;
   font-weight: 600;
-  padding-top: 2rem;
+  padding: 2rem 0 0 0;
+  margin-bottom: 1.5rem;
+  color: var(--dtt-c-text-primary);
+  border: none;
+  background-color: var(--dtt-c-background-3);
+  box-shadow: none;
 }
 
 .container {
-  margin: auto;
+  margin: 0 auto;
   width: 1000px;
 }
 
@@ -93,6 +116,7 @@ label {
 
 input {
   font-size: 14px;
+  font-weight: 600;
 }
 
 input::placeholder {

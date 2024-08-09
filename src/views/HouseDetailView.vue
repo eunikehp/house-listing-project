@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="back-button" @click="goBack">
-      <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to overview
+    <div class="btn back-btn" @click="goBack">
+      <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" />Back to overview
     </div>
     <div class="content">
       <!-- House Detail Section -->
@@ -73,17 +73,16 @@ export default {
 
 
 <style scoped>
+.content {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
 .card {
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   background-color: var(--dtt-c-background-2);
   box-shadow: 0 0 3px rgba(177, 177, 177, 0.2);
-}
-
-.content {
-  display: grid;
-  grid-template-columns: 60% 40%;
 }
 
 @media (max-width: 600px) {
@@ -100,7 +99,7 @@ export default {
     margin-left: 0;
   }
 
-  .back-button {
+  .back-btn {
     margin-left: 0rem;
   }
 }
@@ -119,7 +118,7 @@ export default {
     margin-left: 0;
   }
 
-  .back-button {
+  .back-btn {
     margin-left: 0rem;
   }
 }

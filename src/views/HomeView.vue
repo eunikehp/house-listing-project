@@ -19,11 +19,11 @@
           class="clear-button"
         />
       </div>
-      <span>
-        <button class="sort-button-by-price" @click="sortHouses('price')">Price</button>
-        <button class="sort-button-by-city" @click="sortHouses('city')">City</button>
-        <button class="sort-button-by-size" @click="sortHouses('size')">Size</button>
-      </span>
+      <div>
+        <button class="by-price" @click="sortHouses('price')">Price</button>
+        <button class="by-city" @click="sortHouses('city')">City</button>
+        <button class="by-size" @click="sortHouses('size')">Size</button>
+      </div>
     </div>
     <div v-if="showResult" class="results">
       <h2>{{ totalResults }} {{ results }} found</h2>
@@ -153,17 +153,11 @@ export default {
 
 <style scoped>
 .title,
-.search-row,
-.results,
-.no-results {
+.search-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0;
-}
-
-.search-row {
-  margin-bottom: 1rem;
 }
 
 .create-new-button {
@@ -184,33 +178,15 @@ export default {
 .no-results {
   flex-direction: column;
   margin-top: 6rem;
-}
-
-.no-results span {
-  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   text-align: center;
 }
 
-span button {
-  padding: 5px 35px;
-  height: 35px;
-  font-size: 12px;
-  cursor: pointer;
-  background-color: var(--dtt-c-tertiary-2);
-  border-color: var(--dtt-c-tertiary-2);
-}
-
-span button:focus {
-  background-color: var(--dtt-c-primary);
-  border-color: var(--dtt-c-primary);
-}
-
-.sort-button-by-price {
-  border-radius: 5px 0 0 5px;
-}
-
-.sort-button-by-size {
-  border-radius: 0 5px 5px 0;
+.search-row {
+  margin-bottom: 1rem;
 }
 
 .search-bar {
@@ -242,6 +218,31 @@ input::placeholder {
   transform: translateY(-50%);
   cursor: pointer;
   right: 16px;
+}
+
+.by-price,
+.by-size,
+.by-city {
+  padding: 5px 35px;
+  height: 35px;
+  font-size: 12px;
+  background-color: var(--dtt-c-tertiary-2);
+  border-color: var(--dtt-c-tertiary-2);
+}
+
+.by-price:focus,
+.by-size:focus,
+.by-city:focus {
+  background-color: var(--dtt-c-primary);
+  border-color: var(--dtt-c-primary);
+}
+
+.by-price {
+  border-radius: 5px 0 0 5px;
+}
+
+.by-size {
+  border-radius: 0 5px 5px 0;
 }
 </style>
 

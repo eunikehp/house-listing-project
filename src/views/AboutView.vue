@@ -1,43 +1,44 @@
 <template>
   <div class="container">
-    <h1>About DTT Real Estate</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus et aliquam in numquam
-      asperiores velit impedit voluptatem ad officiis doloribus nam, eaque excepturi earum pariatur
-      dignissimos sint placeat quasi porro.
-      <br /><br />
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus et aliquam in numquam
-      asperiores velit impedit voluptatem ad officiis doloribus nam, eaque excepturi earum pariatur
-      dignissimos sint placeat quasi porro.
-    </p>
-
-    <h1>Design and Development</h1>
-    <div class="company">
-      <img alt="DTTlogo" src="@/assets/icons/img_logo_dtt@3x.png" height="40" />
-      <div>
-        <p>By DTT</p>
-        <a href="https://www.d-tt.nl/">www.d-tt.nl</a>
+    <div class="about-section">
+      <h1>About DTT Real Estate</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus et aliquam in numquam
+        asperiores velit impedit voluptatem ad officiis doloribus nam, eaque excepturi earum
+        pariatur dignissimos sint placeat quasi porro.
+        <br /><br />
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus et aliquam in numquam
+        asperiores velit impedit voluptatem ad officiis doloribus nam, eaque excepturi earum
+        pariatur dignissimos sint placeat quasi porro.
+      </p>
+    </div>
+    <div class="design-section">
+      <h1>Design and Development</h1>
+      <div class="company-info">
+        <img alt="DTTlogo" src="@/assets/icons/img_logo_dtt@3x.png" height="60" />
+        <div>
+          <p>By DTT</p>
+          <a href="https://www.d-tt.nl/">www.d-tt.nl</a>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.container {
-  max-width: 50rem;
-  margin: 3rem auto auto 18rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.about-section,
+.design-section {
+  margin-top: 50px;
 }
 
-.company {
+.company-info {
   display: flex;
-  flex: row;
+  align-items: center;
+  gap: 40px;
 }
 
-.company div {
-  margin-left: 20px;
+.design-section h1 {
+  margin-bottom: 20px;
 }
 
 a {
