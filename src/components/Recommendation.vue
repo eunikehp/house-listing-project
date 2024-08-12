@@ -28,13 +28,13 @@ export default {
   components: { RecommendationList },
   data() {
     return {
-      recommendations: []
+      recommendations: [],
+      displayedRecommendations: [] // For filtered and shuffled recommendations
     }
   },
   computed: {
     limitedRecommendations() {
-      // return this.recommendations.slice(0, 3)
-      return [...this.recommendations].sort(() => (Math.random() > 0.5 ? 1 : -1)).slice(0, 3)
+      return this.displayedRecommendations
     }
   },
   mounted() {
@@ -46,13 +46,24 @@ export default {
         .get(API_BASE_URL, { headers: { 'X-Api-Key': API_KEY } })
         .then((response) => {
           this.recommendations = response.data
+          // Initially populate displayedRecommendations with a shuffled selection of 3 houses
+          this.displayedRecommendations = this.recommendations
+            .sort(() => (Math.random() > 0.5 ? 1 : -1))
+            .slice(0, 3)
         })
         .catch((error) => {
           console.error('Error fetching recommendations:', error)
         })
     },
     selectHouse(house) {
+      //Navigate to the HouseDetail route with the selected houseID
       this.$router.push({ name: 'HouseDetail', params: { id: house.id } })
+
+      //Filter out the clicked house, shuffle the recommendations, and pick the first 3
+      this.displayedRecommendations = this.recommendations
+        .filter((recommendation) => recommendation.id !== house.id) //Exclude the selected houses
+        .sort(() => (Math.random() > 0.5 ? 1 : -1)) //Shuffle the remaining houses
+        .slice(0, 3) //Take the first 3 shuffled houses
     }
   }
 }

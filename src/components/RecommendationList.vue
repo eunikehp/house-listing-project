@@ -42,11 +42,7 @@ export default {
     rooms: Object,
     location: Object,
     price: Number,
-    size: Number,
-    showButtons: {
-      type: Boolean,
-      default: true
-    }
+    size: Number
   },
   data() {
     return {
