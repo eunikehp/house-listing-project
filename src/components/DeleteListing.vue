@@ -23,6 +23,7 @@ export default {
   props: ['id', 'show', 'onClose'],
   methods: {
     closeModal() {
+      this.$router.push({ name: 'Home' })
       this.onClose(false)
     },
     deleteListing() {

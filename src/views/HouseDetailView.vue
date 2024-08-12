@@ -3,10 +3,11 @@
     <div class="back-btn" @click="goBack">
       <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" />Back to overview
     </div>
+
     <div class="content">
       <!-- House Detail Section -->
       <div class="card" v-if="house">
-        <house-detail :house="house" @deleted="handleHouseDeleted" />
+        <house-detail :house="house" :madeByMe="house.madeByMe" @deleted="handleHouseDeleted" />
       </div>
       <div v-else>
         <p>Loading...</p>
@@ -14,6 +15,7 @@
       <div v-if="error">
         <p>Error fetching house detail: {{ error }}</p>
       </div>
+
       <!-- Recommendation Section -->
       <recommendation />
     </div>
@@ -60,9 +62,12 @@ export default {
         this.loading = false
       }
     },
+    // Back button
     goBack() {
       this.$router.push({ name: 'Home' })
     },
+
+    // if house is deleted, the page is directed to home page.
     handleHouseDeleted() {
       this.$router.push({ name: 'Home' })
     }

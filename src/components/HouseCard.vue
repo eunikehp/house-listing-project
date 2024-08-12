@@ -4,6 +4,7 @@
       <div class="house-image" @click="$emit('click')">
         <img alt="Home Image" :src="image" />
       </div>
+
       <div class="listing-info" @click="$emit('click')">
         <ul>
           <li>
@@ -26,9 +27,11 @@
           </li>
         </ul>
       </div>
+
       <div class="card-button" v-if="shouldShowButtons">
         <img src="@/assets/icons/ic_edit@3x.png" height="12px" @click.stop="editListing" />
       </div>
+
       <div class="card-button" v-if="shouldShowButtons">
         <img
           src="@/assets/icons/ic_delete@3x.png"
@@ -36,6 +39,7 @@
           @click.stop="showDeleteModal = true"
         />
       </div>
+
       <delete-listing :id="id" :show="showDeleteModal" :onClose="handleModalClose" />
     </a>
   </div>

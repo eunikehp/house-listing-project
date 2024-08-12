@@ -3,22 +3,29 @@
   <div class="description">
     <header>
       <h1 class="header-title">{{ house.location.street }} {{ house.location.houseNumber }}</h1>
+      <!-- Edit button -->
       <img
         class="card-icon"
+        v-if="shouldShowButtons"
         alt="edit"
         src="@/assets/icons/ic_edit@3x.png"
         height="15px"
         @click="editListing"
       />
+      <!-- Delete button -->
       <img
         alt="delete"
+        v-if="shouldShowButtons"
         src="@/assets/icons/ic_delete@3x.png"
         height="15px"
         @click="showDeleteModal = true"
         class="card-icon"
       />
+      <!-- Delete listing modal -->
       <delete-listing :id="house.id" :show="showDeleteModal" :onClose="handleModalClose" />
     </header>
+
+    <!-- Listing Information -->
     <div class="listing-info">
       <ul>
         <li>
@@ -61,7 +68,15 @@ export default {
   name: 'HouseDetail',
   components: { DeleteListing },
   props: {
-    house: Object
+    house: Object,
+    showButtons: {
+      type: Boolean,
+      default: true
+    },
+    madeByMe: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     return {
@@ -69,6 +84,11 @@ export default {
     }
   },
   emits: ['deleted'],
+  computed: {
+    shouldShowButtons() {
+      return this.madeByMe && this.showButtons
+    }
+  },
   methods: {
     editListing() {
       this.$router.push({ name: 'EditListing' })

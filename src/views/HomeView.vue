@@ -5,6 +5,7 @@
       <button class="create-new-button" @click="goToCreateListing">CREATE NEW</button>
     </div>
 
+    <!-- Search bar and sort button -->
     <div class="search-row">
       <div class="search-bar">
         <input
@@ -27,10 +28,12 @@
       </div>
     </div>
 
+    <!-- A notif if houses have been found -->
     <div v-if="showResult" class="results">
       <h2>{{ totalResults }} {{ results }} found</h2>
     </div>
 
+    <!-- If no result -->
     <div v-if="showEmptyHouses" class="no-results">
       <img alt="no-results" src="@/assets/icons/img_empty_houses@3x.png" height="150px" /><span
         >No results found. <br />Please try another keyword.</span
@@ -148,6 +151,8 @@ export default {
         this.showEmptyHouses = false
       }
     },
+
+    // Clear search button
     clearSearch() {
       this.searchHouses = ''
       this.filterHouses()
