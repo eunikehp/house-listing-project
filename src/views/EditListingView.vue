@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="content">
-      <div class="btn back-btn" @click="goBack">
+      <div class="back-btn" @click="goBack">
         <img alt="back" src="@/assets/icons/ic_back_grey@3x.png" height="12px" /> Back to detail
         page
       </div>

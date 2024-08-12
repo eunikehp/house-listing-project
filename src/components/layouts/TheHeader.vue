@@ -20,16 +20,15 @@ header {
   background-color: var(--dtt-c-background-2);
   display: flex;
   align-items: center;
-  max-width: 100%;
+  justify-content: center;
   height: 4rem;
-  padding: 0 180px;
   box-shadow: 0 5px 100px rgba(165, 165, 165, 0.2);
 }
 
 .wrapper {
-  margin: auto;
-  /* max-width: 10rem; */
-  text-align: left;
+  margin: 0 auto;
+  width: 1000px;
+  justify-content: flex-start;
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -38,7 +37,7 @@ header {
 nav {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
-  padding: 30px;
+  padding: 30px 0;
 }
 
 nav a:link {
@@ -51,6 +50,7 @@ nav a:link {
 nav a.router-link-exact-active {
   color: var(--dtt-c-text-primary);
   font-weight: 700;
+  padding-left: 0;
 }
 
 @media (max-width: 600px) {

@@ -26,10 +26,10 @@
           </li>
         </ul>
       </div>
-      <div class="card-button" v-if="showButtons">
+      <div class="card-button" v-if="shouldShowButtons">
         <img src="@/assets/icons/ic_edit@3x.png" height="12px" @click.stop="editListing" />
       </div>
-      <div class="card-button" v-if="showButtons">
+      <div class="card-button" v-if="shouldShowButtons">
         <img
           src="@/assets/icons/ic_delete@3x.png"
           height="12px"
@@ -57,11 +57,20 @@ export default {
     showButtons: {
       type: Boolean,
       default: true
+    },
+    madeByMe: {
+      type: Boolean,
+      required: true
     }
   },
   data() {
     return {
       showDeleteModal: false
+    }
+  },
+  computed: {
+    shouldShowButtons() {
+      return this.madeByMe && this.showButtons
     }
   },
   methods: {

@@ -4,6 +4,7 @@
       <h1>Houses</h1>
       <button class="create-new-button" @click="goToCreateListing">CREATE NEW</button>
     </div>
+
     <div class="search-row">
       <div class="search-bar">
         <input
@@ -25,14 +26,17 @@
         <button class="by-size" @click="sortHouses('size')">Size</button>
       </div>
     </div>
+
     <div v-if="showResult" class="results">
       <h2>{{ totalResults }} {{ results }} found</h2>
     </div>
+
     <div v-if="showEmptyHouses" class="no-results">
       <img alt="no-results" src="@/assets/icons/img_empty_houses@3x.png" height="150px" /><span
         >No results found. <br />Please try another keyword.</span
       >
     </div>
+
     <HouseCard
       v-for="house in filteredHouses"
       :key="house.id"
@@ -42,6 +46,7 @@
       :price="house.price"
       :image="house.image"
       :location="house.location"
+      :madeByMe="house.madeByMe"
       :show-buttons="true"
       @click="selectHouse(house)"
     />
