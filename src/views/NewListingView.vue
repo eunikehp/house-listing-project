@@ -100,12 +100,12 @@ export default {
   background-size: cover;
   background-position: center center;
   min-height: 100vh;
-  width: 100%;
+  max-width: 100%;
 }
 
 .content {
   margin: auto;
-  width: 1000px;
+  max-width: 1000px;
 }
 
 @media screen and (max-width: 600px) {

@@ -86,7 +86,7 @@ export default {
         const payload = {
           ...updatedData,
           image: imageUrl, // the uploaded image URL
-          hasGarage: updatedData.hasGarage === 'Yes' ? true : false // Convert 'yes'/'no' to boolean
+          hasGarage: updatedData.hasGarage === 'yes' ? true : false // Convert 'yes'/'no' to boolean
         }
 
         //Update listing with the image
@@ -134,12 +134,12 @@ export default {
   background-size: cover;
   background-position: center center;
   min-height: 100vh;
-  width: 100%;
+  max-width: 100%;
 }
 
 .content {
   margin: auto;
-  width: 1000px;
+  max-width: 1000px;
 }
 
 @media (max-width: 600px) {

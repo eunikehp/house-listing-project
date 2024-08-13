@@ -1,13 +1,15 @@
 <template>
   <header>
     <nav>
-      <div class="wrapper">
-        <router-link to="/">
-          <img alt="DTT logo" class="logo" src="@/assets/icons/img_logo_dtt@3x.png" height="32" />
-        </router-link>
-        <router-link to="/">Houses</router-link>
-        <router-link to="/about">About</router-link>
-      </div>
+      <ul>
+        <li>
+          <router-link to="/">
+            <img alt="DTT logo" class="logo" src="@/assets/icons/img_logo_dtt@3x.png" height="35" />
+          </router-link>
+        </li>
+        <li><router-link to="/">Houses</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
+      </ul>
     </nav>
   </header>
 </template>
@@ -18,32 +20,34 @@
 <style scoped>
 header {
   background-color: var(--dtt-c-background-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 4rem;
   box-shadow: 0 5px 100px rgba(165, 165, 165, 0.2);
-}
-
-.wrapper {
-  margin: 0 auto;
-  width: 1000px;
-  justify-content: flex-start;
-  display: flex;
-  align-items: center;
-  font-weight: 500;
 }
 
 nav {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
-  padding: 30px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1000px;
+  font-weight: 500;
+  padding-top: 13px;
+}
+
+nav ul {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 70px;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
 }
 
 nav a:link {
   font-weight: 500;
   font-size: 18px;
-  padding: 0 1.5rem;
   color: var(--dtt-c-tertiary-2);
 }
 
