@@ -101,14 +101,14 @@
     </div>
     <div class="form-control">
       <label for="description">Description*</label>
-      <input
+      <textarea
         id="description"
         type="text"
         placeholder="Enter description"
         v-model="formData.description"
-        class="description-input"
+        rows="6"
         required
-      />
+      ></textarea>
     </div>
     <div class="post-button">
       <button type="submit">{{ isEditMode ? 'SAVE' : 'POST' }}</button>
@@ -187,29 +187,30 @@ h2 {
 }
 
 input,
-select {
+select,
+textarea {
   display: block;
   border-radius: 5px;
   border: none;
-  height: 40px;
   width: 100%;
   margin-top: 0.5rem;
   position: relative;
   padding: 12px;
 }
 
+input,
 select {
-  /* max-width: 100%; */
+  height: 40px;
 }
 
 .description-input {
-  min-height: 120px;
+  /* min-height: 120px; */
   position: relative;
 }
 
 .description-input::placeholder {
   position: absolute;
-  top: 12px;
+  /* align-items: flex-start; */
 }
 
 button {
