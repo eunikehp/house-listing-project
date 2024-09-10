@@ -23,7 +23,9 @@ export default createStore({
   actions: {
     async fetchDatafromAPI({ commit }) {
       try {
-        const response = await axios.get(API_BASE_URL, { headers: { 'X-Api-Key': API_KEY } })
+        const response = await axios.get(API_BASE_URL, {
+          mode: 'no-cors'
+        }, { headers: { 'X-Api-Key': API_KEY } })
         // console.log(response)
         const newData = response.data.map(house => ({
           ...house,
@@ -53,7 +55,9 @@ export default createStore({
     async fetchListingData({ commit }, houseId) {
       try {
         const response = await axios
-          .get(ENDPOINTS.GET_LISTING(houseId), { headers: { 'X-Api-Key': API_KEY } })
+          .get(ENDPOINTS.GET_LISTING(houseId), {
+            mode: 'no-cors'
+          }, { headers: { 'X-Api-Key': API_KEY } })
         const house = response.data[0]
         console.log(house)
         const newData = {
