@@ -48,23 +48,23 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 40px;
+  padding: 4rem;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(187, 187, 187, 0.3);
-  width: 500px;
+  box-shadow: 0 0 1rem rgba(187, 187, 187, 0.3);
+  width: 50rem;
   max-width: 80%;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   box-sizing: border-box;
   text-align: center;
   z-index: 2;
 }
 
 .modal-content {
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 .modal-title {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .modal-button {
@@ -72,11 +72,11 @@ export default {
 }
 
 button {
-  border-radius: 5px;
-  padding: 8px 10px;
-  width: 300px;
-  margin-bottom: 20px;
-  font-size: 14px;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  width: 30rem;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
 }
 
 .go-back-button {

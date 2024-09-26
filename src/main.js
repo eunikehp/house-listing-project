@@ -7,11 +7,11 @@ import "@fontsource/montserrat/500-italic.css"; //medium-italic
 import "@fontsource/montserrat/600.css"; //semibold
 import "@fontsource/montserrat/700.css"; //bold
 
-import { createApp } from 'vue'
-import store from './stores/counter'
+import { createApp } from 'vue';
+import store from './stores/index';
 
-import App from './App.vue'
-import router from './router'
+import App from './App.vue';
+import router from './router';
 
 const app = createApp(App)
 app.use(router)

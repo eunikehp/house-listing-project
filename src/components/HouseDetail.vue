@@ -111,15 +111,15 @@ export default {
 .description {
   margin: 2rem 1.5rem;
   text-align: left;
-  max-width: 40rem;
+  max-width: 100%;
 }
 
 header {
   display: grid;
-  grid-template-columns: auto 15px 15px;
-  grid-gap: 15px;
+  grid-template-columns: auto 1.5rem 1.5rem;
+  grid-gap: 1.5rem;
   margin-bottom: 0.8rem;
-  max-width: 40rem;
+  max-width: 100%;
 }
 
 .header-title {
@@ -128,14 +128,15 @@ header {
 }
 
 .card-icon {
-  height: 1rem;
+  height: 1.5rem;
   cursor: pointer;
   margin-left: auto;
+  align-self: center;
 }
 
 .listing-info {
   margin-bottom: 0.8rem;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--dtt-c-text-secondary);
 }
@@ -146,13 +147,13 @@ header {
 }
 
 .listing-info li {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .listing-info img,
 span {
-  margin-right: 15px;
-  height: 15px;
+  margin-right: 1.5rem;
+  height: 1.5rem;
 }
 
 p {

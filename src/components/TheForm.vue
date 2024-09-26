@@ -166,7 +166,7 @@ export default {
 <style scoped>
 form {
   margin-top: 2rem;
-  max-width: 20rem;
+  max-width: 35rem;
   background-color: transparent;
   font-size: 14px;
 }
@@ -190,17 +190,17 @@ input,
 select,
 textarea {
   display: block;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   border: none;
   width: 100%;
   margin-top: 0.5rem;
   position: relative;
-  padding: 12px;
+  padding: 1.2rem;
 }
 
 input,
 select {
-  height: 40px;
+  height: 4rem;
 }
 
 .description-input {
@@ -215,7 +215,7 @@ select {
 
 button {
   padding: 0.4rem 4rem;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   box-shadow: none;
 }
 

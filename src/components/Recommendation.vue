@@ -71,7 +71,7 @@ export default {
 
 <style scoped>
 .recommendations {
-  margin-left: 70px;
+  margin-left: 7rem;
 }
 
 .house-list {
@@ -81,14 +81,14 @@ export default {
 
 @media screen and (max-width: 600px) {
   .recommendations {
-    margin: 30px 0;
+    margin: 3rem 0;
     max-width: 40rem;
   }
 }
 
 @media screen and (max-width: 1080px) and (min-width: 600px) {
   .recommendations {
-    margin: 30px 0;
+    margin: 3rem 0;
     max-width: 50rem;
   }
 }

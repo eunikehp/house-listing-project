@@ -173,12 +173,12 @@ export default {
 .create-new-button {
   background: url('@/assets/icons/ic_plus_white@3x.png') no-repeat 15px center;
   background-color: var(--dtt-c-primary);
-  background-size: 13px 13px;
+  background-size: 1.3rem 1.3rem;
   border: none;
   display: flex;
   align-items: center;
-  border-radius: 5px;
-  padding: 8px 20px 8px 40px;
+  border-radius: 0.5rem;
+  padding: 0.8rem 2rem 0.8rem 4rem;
 }
 
 .results {
@@ -206,36 +206,36 @@ export default {
 .search-bar input {
   width: 100%;
   background: url('@/assets/icons/ic_search@3x.png') no-repeat 16px center;
-  background-size: 16px 16px;
-  font-size: 12px;
-  height: 35px;
-  width: 370px;
-  border-radius: 5px;
+  background-size: 1.6rem 1.6rem;
+  font-size: 1.2rem;
+  height: 3.5rem;
+  width: 37rem;
+  border-radius: 0.5rem;
   border: none;
-  padding: 8px 2px 8px 40px;
+  padding: 0.8rem 0.2rem 0.8rem 4rem;
   background-color: var(--dtt-c-tertiary-1);
   color: var(--dtt-c-text-primary);
 }
 
 input::placeholder {
-  left: 45px;
+  left: 4.5rem;
 }
 
 .clear-button {
   position: absolute;
-  height: 16px;
+  height: 1.6rem;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  right: 16px;
+  right: 1.6rem;
 }
 
 .by-price,
 .by-size,
 .by-city {
-  padding: 5px 35px;
-  height: 35px;
-  font-size: 12px;
+  padding: 0.5rem 3.5rem;
+  height: 3.5rem;
+  font-size: 1.2rem;
   background-color: var(--dtt-c-tertiary-2);
   border-color: var(--dtt-c-tertiary-2);
 }
@@ -248,11 +248,11 @@ input::placeholder {
 }
 
 .by-price {
-  border-radius: 5px 0 0 5px;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
 
 .by-size {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 </style>
 

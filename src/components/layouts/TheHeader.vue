@@ -20,26 +20,26 @@
 <style scoped>
 header {
   background-color: var(--dtt-c-background-2);
-  height: 4rem;
+  height: 6.4rem;
   box-shadow: 0 5px 100px rgba(165, 165, 165, 0.2);
 }
 
 nav {
   font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
+  font-size: 1.8rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 100rem;
   font-weight: 500;
-  padding-top: 13px;
+  padding-top: 1.3rem;
 }
 
 nav ul {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  gap: 70px;
+  gap: 7rem;
   justify-content: center;
   align-items: center;
   list-style: none;
@@ -47,7 +47,7 @@ nav ul {
 
 nav a:link {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: var(--dtt-c-tertiary-2);
 }
 

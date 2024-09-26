@@ -65,8 +65,8 @@ export default {
   
   <style scoped>
 .house-card {
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
   padding: 1rem 0.7rem;
   margin-top: 1rem;
   display: flex;
@@ -75,13 +75,13 @@ export default {
 }
 
 .house-image {
-  margin-right: 10px;
-  width: 80px;
-  height: 80px;
+  margin-right: 1rem;
+  width: 8rem;
+  height: 8rem;
 }
 
 .house-image img {
-  border-radius: 5px;
+  border-radius: 0.5rem;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -90,11 +90,11 @@ export default {
 h1,
 h2,
 p {
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 .listing-info {
-  font-size: 14px;
+  font-size: 1.4rem;
   text-align: left;
 }
 
@@ -104,22 +104,22 @@ ul {
 }
 
 li {
-  margin-bottom: 2px;
+  margin-bottom: 0.2rem;
 }
 
 .icons img,
 span {
-  margin-right: 10px;
-  height: 12px;
+  margin-right: 1rem;
+  height: 1.2rem;
 }
 
 span {
-  font-size: 14px;
+  font-size: 1.4rem;
   color: var(--dtt-c-text-primary);
 }
 
 .card-button {
-  margin-right: 20px;
+  margin-right: 2rem;
   height: 1rem;
   cursor: pointer;
 }

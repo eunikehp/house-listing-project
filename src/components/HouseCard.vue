@@ -93,31 +93,31 @@ export default {
 
 <style scoped>
 .house-card {
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
   padding: 1rem;
   margin: 1rem 0;
   display: grid;
-  grid-template-columns: 9rem auto 2rem 2rem;
+  grid-template-columns: 15rem auto 3rem 3rem;
   background-color: var(--dtt-c-background-2);
   cursor: pointer;
 }
 
 .house-image {
   margin-right: 1rem;
-  width: 130px;
-  height: 130px;
+  width: 13rem;
+  height: 13rem;
 }
 
 .house-image img {
-  border-radius: 5px;
+  border-radius: 0.5rem;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .listing-info {
-  font-size: 16px;
+  font-size: 1.6rem;
   text-align: left;
   min-width: 14rem;
   margin: auto 0;
@@ -129,22 +129,22 @@ ul {
 }
 
 li {
-  margin-bottom: 7px;
+  margin-bottom: 0.7rem;
 }
 
 .icons img,
 span {
-  margin-right: 10px;
-  height: 12px;
+  margin-right: 1rem;
+  height: 1.2rem;
 }
 
 span {
-  font-size: 14px;
+  font-size: 1.4rem;
   color: var(--dtt-c-text-primary);
 }
 
 .card-button {
-  margin-right: 20px;
+  margin-right: 2rem;
   height: 1rem;
   cursor: pointer;
 }
