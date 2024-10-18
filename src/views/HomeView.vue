@@ -7,21 +7,15 @@
 
     <!-- Search bar and sort button -->
     <div class="search-row">
-      <search-bar></search-bar>
+      <search-bar @update-results="updateResults"></search-bar>
       <sort-button></sort-button>
     </div>
 
-    <!-- A notif if houses have been found -->
-    <div v-if="showResult" class="results">
-      <h2>{{ totalResults }} {{ results }} found</h2>
-    </div>
-
-    <!-- If no result -->
-    <div v-if="showEmptyHouses" class="no-results">
-      <img alt="no-results" src="@/assets/icons/img_empty_houses@3x.png" height="150px" /><span
-        >No results found. <br />Please try another keyword.</span
-      >
-    </div>
+    <search-notif
+      :show-result="showResult"
+      :total-results="totalResults"
+      :show-empty-houses="showEmptyHouses"
+    ></search-notif>
 
     <HouseCard
       v-for="house in filteredHouses"
@@ -44,24 +38,24 @@ import HouseCard from '../components/HouseCard.vue'
 import { mapState, mapActions } from 'vuex'
 import SearchBar from '@/components/home/SearchBar.vue'
 import SortButton from '@/components/home/SortButton.vue'
+import SearchNotif from '@/components/home/SearchNotif.vue'
 
 export default {
   name: 'HomeView',
-  components: { HouseCard, SearchBar, SortButton },
+  components: { HouseCard, SearchBar, SortButton, SearchNotif },
   data() {
     return {
       sortOption: '',
       showResult: false,
       totalResults: null,
-      showEmptyHouses: false,
-      showClearButton: false
+      showEmptyHouses: false
     }
   },
   mounted() {
     this.fetchDatafromAPI()
   },
   computed: {
-    ...mapState(['houses', 'filteredHouses']),
+    ...mapState(['filteredHouses']),
     results() {
       return this.totalResults > 1 ? 'results' : 'result'
     }
@@ -77,6 +71,13 @@ export default {
     // go to 'create a new listing 'page'
     goToCreateListing() {
       this.$router.push({ name: 'CreateListing' })
+    },
+
+    // handle updates from search bar
+    updateResults({ showResult, totalResults, showEmptyHouses }) {
+      this.showResult = showResult
+      this.totalResults = totalResults
+      this.showEmptyHouses = showEmptyHouses
     }
   }
 }
@@ -103,20 +104,6 @@ export default {
   align-items: center;
   border-radius: 0.5rem;
   padding: 0.8rem 2rem 0.8rem 4rem;
-}
-
-.results {
-  margin-top: 2rem;
-}
-
-.no-results {
-  flex-direction: column;
-  margin-top: 6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
 }
 </style>
 

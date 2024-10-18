@@ -30,8 +30,10 @@ export default {
   methods: {
     // filter houses based on search term
     filterHouses() {
+      let filtered = []
+
       if (this.searchHouses) {
-        const filtered = this.houses.filter(
+        filtered = this.houses.filter(
           (house) =>
             house.location.street.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
             house.location.city.toLowerCase().includes(this.searchHouses.toLowerCase()) ||
@@ -40,17 +42,24 @@ export default {
             house.size.toString().includes(this.searchHouses)
         )
         this.$store.commit('SET_FILTERED_HOUSES', filtered)
-        if (filtered.length > 0) {
-          this.showResult = true
-          this.totalResults = filtered.length
-        } else if (filtered.length === 0) {
-          this.showResult = false
-          this.showEmptyHouses = true
-        }
       } else {
-        this.$store.commit('SET_FILTERED_HOUSES', this.houses)
-        this.showResult = false
-        this.showEmptyHouses = false
+        filtered = this.houses
+        this.$store.commit('SET_FILTERED_HOUSES', filtered)
+      }
+
+      //Emit result status to parent
+      if (filtered.length > 0) {
+        this.$emit('update-results', {
+          showResult: true,
+          totalResults: filtered.length,
+          showEmptyHouses: false
+        })
+      } else {
+        this.$emit('update-results', {
+          showResult: false,
+          totalResults: 0,
+          showEmptyHouses: true
+        })
       }
     },
 
