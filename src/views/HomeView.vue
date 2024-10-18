@@ -1,11 +1,10 @@
 <template>
   <div class="container">
-    <div class="title">
+    <div class="title-row">
       <h1>Houses</h1>
-      <button class="create-new-button" @click="goToCreateListing">CREATE NEW</button>
+      <create-new-button></create-new-button>
     </div>
 
-    <!-- Search bar and sort button -->
     <div class="search-row">
       <search-bar @update-results="updateResults"></search-bar>
       <sort-button></sort-button>
@@ -39,10 +38,11 @@ import { mapState, mapActions } from 'vuex'
 import SearchBar from '@/components/home/SearchBar.vue'
 import SortButton from '@/components/home/SortButton.vue'
 import SearchNotif from '@/components/home/SearchNotif.vue'
+import CreateNewButton from '@/components/home/CreateNewButton.vue'
 
 export default {
   name: 'HomeView',
-  components: { HouseCard, SearchBar, SortButton, SearchNotif },
+  components: { HouseCard, SearchBar, SortButton, SearchNotif, CreateNewButton },
   data() {
     return {
       sortOption: '',
@@ -68,11 +68,6 @@ export default {
       this.$router.push({ name: 'HouseDetail', params: { id: house.id } })
     },
 
-    // go to 'create a new listing 'page'
-    goToCreateListing() {
-      this.$router.push({ name: 'CreateListing' })
-    },
-
     // handle updates from search bar
     updateResults({ showResult, totalResults, showEmptyHouses }) {
       this.showResult = showResult
@@ -84,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-.title,
+.title-row,
 .search-row {
   display: flex;
   justify-content: space-between;
@@ -93,17 +88,6 @@ export default {
 }
 .search-row {
   margin-bottom: 1rem;
-}
-
-.create-new-button {
-  background: url('@/assets/icons/ic_plus_white@3x.png') no-repeat 15px center;
-  background-color: var(--dtt-c-primary);
-  background-size: 1.3rem 1.3rem;
-  border: none;
-  display: flex;
-  align-items: center;
-  border-radius: 0.5rem;
-  padding: 0.8rem 2rem 0.8rem 4rem;
 }
 </style>
 
