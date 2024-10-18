@@ -4,14 +4,8 @@
     <header>
       <h1 class="header-title">{{ house.location.street }} {{ house.location.houseNumber }}</h1>
       <!-- Edit button -->
-      <img
-        class="card-icon"
-        v-if="shouldShowButtons"
-        alt="edit"
-        src="@/assets/icons/ic_edit@3x.png"
-        height="15px"
-        @click="editListing"
-      />
+      <edit-button v-if="shouldShowButtons"></edit-button>
+
       <!-- Delete button -->
       <img
         alt="delete"
@@ -63,10 +57,11 @@
 
 <script>
 import DeleteListing from '@/components/DeleteListing.vue'
+import EditButton from './button/EditButton.vue'
 
 export default {
   name: 'HouseDetail',
-  components: { DeleteListing },
+  components: { DeleteListing, EditButton },
   props: {
     house: Object,
     showButtons: {
@@ -90,9 +85,6 @@ export default {
     }
   },
   methods: {
-    editListing() {
-      this.$router.push({ name: 'EditListing' })
-    },
     handleModalClose() {
       this.showDeleteModal = false
       this.$emit('deleted')
@@ -125,13 +117,6 @@ header {
 .header-title {
   margin: 0;
   padding: 0;
-}
-
-.card-icon {
-  height: 1.5rem;
-  cursor: pointer;
-  margin-left: auto;
-  align-self: center;
 }
 
 .listing-info {

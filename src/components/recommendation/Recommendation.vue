@@ -20,7 +20,7 @@
 
 <script>
 import axios from 'axios'
-import RecommendationList from './RecommendationList.vue'
+import RecommendationList from '../recommendation/RecommendationList.vue'
 import { API_BASE_URL, API_KEY } from '@/apiConfig'
 
 export default {

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Recommendation from '@/components/Recommendation.vue'
+import Recommendation from '@/components/recommendation/Recommendation.vue'
 import HouseDetail from '@/components/HouseDetail.vue'
 import { mapState, mapActions } from 'vuex'
 

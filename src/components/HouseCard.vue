@@ -28,10 +28,12 @@
         </ul>
       </div>
 
-      <div class="card-button" v-if="shouldShowButtons">
-        <img src="@/assets/icons/ic_edit@3x.png" height="12px" @click.stop="editListing" />
+      <!-- Edit Button -->
+      <div v-if="shouldShowButtons">
+        <edit-button :id="id"></edit-button>
       </div>
 
+      <!-- Delete Button -->
       <div class="card-button" v-if="shouldShowButtons">
         <img
           src="@/assets/icons/ic_delete@3x.png"
@@ -47,10 +49,11 @@
 
 <script>
 import DeleteListing from '@/components/DeleteListing.vue'
+import EditButton from './button/EditButton.vue'
 
 export default {
   name: 'HouseCard',
-  components: { DeleteListing },
+  components: { DeleteListing, EditButton },
   props: {
     id: Number,
     image: String,
@@ -78,9 +81,6 @@ export default {
     }
   },
   methods: {
-    editListing() {
-      this.$router.push({ name: 'EditListing', params: { id: this.id } })
-    },
     handleModalClose(deleted) {
       this.showDeleteModal = false
       if (deleted) {
@@ -141,11 +141,5 @@ span {
 span {
   font-size: 1.4rem;
   color: var(--dtt-c-text-primary);
-}
-
-.card-button {
-  margin-right: 2rem;
-  height: 1rem;
-  cursor: pointer;
 }
 </style>
