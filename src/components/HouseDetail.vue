@@ -7,14 +7,8 @@
       <edit-button v-if="shouldShowButtons"></edit-button>
 
       <!-- Delete button -->
-      <img
-        alt="delete"
-        v-if="shouldShowButtons"
-        src="@/assets/icons/ic_delete@3x.png"
-        height="15px"
-        @click="showDeleteModal = true"
-        class="card-icon"
-      />
+      <delete-button v-if="shouldShowButtons" @click="showDeleteModal = true"></delete-button>
+
       <!-- Delete listing modal -->
       <delete-listing :id="house.id" :show="showDeleteModal" :onClose="handleModalClose" />
     </header>
@@ -58,10 +52,11 @@
 <script>
 import DeleteListing from '@/components/DeleteListing.vue'
 import EditButton from './button/EditButton.vue'
+import DeleteButton from './button/DeleteButton.vue'
 
 export default {
   name: 'HouseDetail',
-  components: { DeleteListing, EditButton },
+  components: { DeleteListing, EditButton, DeleteButton },
   props: {
     house: Object,
     showButtons: {

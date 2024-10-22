@@ -34,12 +34,8 @@
       </div>
 
       <!-- Delete Button -->
-      <div class="card-button" v-if="shouldShowButtons">
-        <img
-          src="@/assets/icons/ic_delete@3x.png"
-          height="12px"
-          @click.stop="showDeleteModal = true"
-        />
+      <div v-if="shouldShowButtons">
+        <delete-button @click.stop="showDeleteModal = true"></delete-button>
       </div>
 
       <delete-listing :id="id" :show="showDeleteModal" :onClose="handleModalClose" />
@@ -50,10 +46,11 @@
 <script>
 import DeleteListing from '@/components/DeleteListing.vue'
 import EditButton from './button/EditButton.vue'
+import DeleteButton from './button/DeleteButton.vue'
 
 export default {
   name: 'HouseCard',
-  components: { DeleteListing, EditButton },
+  components: { DeleteListing, EditButton, DeleteButton },
   props: {
     id: Number,
     image: String,

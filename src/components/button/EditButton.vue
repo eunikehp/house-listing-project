@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .card-icon {
   height: 1.5rem;
   cursor: pointer;
