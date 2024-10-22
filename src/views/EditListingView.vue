@@ -14,7 +14,7 @@
   
 <script>
 import { ENDPOINTS, API_KEY } from '@/apiConfig'
-import TheForm from '../components/TheForm.vue'
+import TheForm from '../components/form/TheForm.vue'
 import axios from 'axios'
 import { mapActions, mapState } from 'vuex'
 

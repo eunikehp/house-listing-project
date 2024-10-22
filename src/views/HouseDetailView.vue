@@ -24,7 +24,7 @@
 
 <script>
 import Recommendation from '@/components/recommendation/Recommendation.vue'
-import HouseDetail from '@/components/HouseDetail.vue'
+import HouseDetail from '@/components/houseDetail/HouseDetail.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
